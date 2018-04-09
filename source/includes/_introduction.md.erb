@@ -1,0 +1,15 @@
+# Introduction
+
+Ces API permettent de récupérer des informations sur des entreprises et établissements français (ie possédant des numéros de SIRET / SIREN).
+
+Afin de pouvoir interagir avec API ENTREPRISE, il faut se fournir un **jeton d’authentification**, qui doit être passé en argument à chaque appel, dans la clé `token`.
+
+API ENTREPRISE est un _agrégateur de différents services de l’état_, permettant de recouper et regrouper des informations vis-à-vis d’entités existantes (actuellement seulement les entreprises et établissements français).
+
+Certaines ressources nécessitent plus de paramètres vis à vis de l’authentification, ( tel que la récupération des attestations fiscales ), paramètres utilisés lors de l’appel à un autre service tier nécessitant des informations plus précise sur l’origine de l’appel API.
+
+Exemple:
+
+`GET https://entreprise.api.gouv.fr/v2/ressource_test/417766096?token=mon_token`
+
+L’utilisation des API est autorisée pour tout agent public ou tout utilisateur habilité dans le cadre de sa mission à traiter des marchés publics ou des aides publiques. Ces API permettent alors de consulter les informations publiques de l’entreprise. Pour consulter les informations privées, c’est à dire les pièces justificatives, il faut nécessairement avoir récolté le consentement explicite de l’entreprise. Ce consentement peut figurer sur une case à cocher d’un formulaire électronique (ex. MPS) ou d’un formulaire Cerfa.

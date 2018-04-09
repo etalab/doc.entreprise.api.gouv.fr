@@ -1,0 +1,44 @@
+# Exercices
+
+> Format du JSON de retour :
+
+```json
+{
+  "exercices": [
+    {
+      "ca": "648374448",
+      "date_fin_exercice": "2016-12-31T00:00:00+01:00",
+      "date_fin_exercice_timestamp": 1483138800
+    },
+    {
+      "ca": "491463386",
+      "date_fin_exercice": "2015-12-31T00:00:00+01:00",
+      "date_fin_exercice_timestamp": 1451516400
+    },
+    {
+      "ca": "473899061",
+      "date_fin_exercice": "2014-12-31T00:00:00+01:00",
+      "date_fin_exercice_timestamp": 1419980400
+    }
+  ]
+}
+```
+
+Le json renvoyé contient la clé exercices. Cette clé contient un tableau
+contenant 1 à 3 exercices. La structure des données est la même que dans
+l’exemple.
+
+Ce sont les trois derniers exercices, pas forcement les exercices des trois
+dernières années. Il peut y avoir plusieurs exercices en une année.
+
+Ici aussi nous renvoyons aussi la date au format timestamp UNIX
+
+### Requête HTTP
+`GET https://entreprise.api.gouv.fr/v2/exercices/:siret`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siret     | obligatoire | Siret de l'entreprise
+<%= partial "includes/params_obligatoires" %>

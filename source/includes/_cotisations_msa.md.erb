@@ -1,0 +1,27 @@
+# Cotisations MSA
+
+> Format du JSON de retour :
+
+```json
+{
+  "analyse_en_cours": false,
+  "a_jour": true
+}
+```
+
+Cet endpoint permet de récupérer les informations de régularité des cotisations sociales d'une entreprise auprès de la MSA.
+
+Le JSON de retourné est composé de deux champs :
+
+* `analyse_en_cours` indique si l’établissement fait actuellement l’objet d’une analyse par la MSA.
+* `a_jour` indique si l’établissement est à jour de ses cotisations employeurs dues auprès de la MSA. Il vaut null dans le cas où `analyse_en_cours` vaut true.
+
+### Requête HTTP
+`GET https://entreprise.api.gouv.fr/v2/cotisations_msa/:siret`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siret     | obligatoire | Siret de l'entreprise
+<%= partial "includes/params_obligatoires" %>

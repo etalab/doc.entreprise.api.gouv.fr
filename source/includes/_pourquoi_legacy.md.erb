@@ -1,0 +1,57 @@
+# Pourquoi Legacy ?
+
+Pour des raisons historiques nous servons la donnée établissements et entreprises :
+
+  - sur les endpoints dits 'legacy'
+  - sur les endpoints non legacy
+
+### Quelle est la différence ?
+
+Les endpoints legacy et non legacy utilisent 2 versions différentes de l'API SIRENE mise à
+disposition par l'INSEE ainsi que de la donnée provenant de la même API des greffes.
+
+### Legacy
+
+Regroupe entreprises_legacy, etablissements_legacy
+
+  - quelques informations sur les établissements et les entreprises (adresse, objet social etc.)
+  - statut de l'entreprise ou l'établissement.
+  - données des greffes sur les mandataires sociaux
+
+En cas d'appel d'un établissement fermé (par exemple à la suite d'un déménagement), cette API
+répond `200`, et affiche le statut idoine dans la réponse
+
+### Non Legacy
+
+Regroupe entreprises, etablissements, etablissement_predecesseur, etablissement_successeur
+
+  - informations plus riches qu'en legacy
+  - par contre, statut de l'entreprise ou l'établissement non disponible
+  - données des greffes sur les mandataires sociaux
+
+Ces APIs s'appuient sur une API de l'INSEE qui ne propose les informations que sur les
+établissements et entreprises actifs. En conséquence un appel sur un établissement fermé
+renvoie un `404`. L'INSEE met a disposition des données concernant l'existence d'un
+établissement successeur ou prédécesseur pour un SIRET donné. Cela permet de vérifier si un
+`404` veut dire siret correct mais inconnu ou siret d'un établissement non actif ayant eu
+un successeur, cas classique de déménagement de siège social par exemple
+
+### Quid des permissions
+
+Une fois obtenu l'accès à la donnée entreprises et etablissements vous pouvez interroger comme
+bon vous semble legacy ou non legacy.
+
+### Disponibilité décorrélée
+
+Les endpoints legacy et non legacy vont piocher sur 2 versions de l'API de l'INSEE qui sont
+hébergées sur 2 infrastructures physiques différentes, situées dans 2 villes différentes.
+Une éventuelle indisponibilité de legacy n'implique donc pas une indisponibilité de non legacy
+et vice-versa.
+
+### Backup partiel en cas d'indisponibilite non legacy
+
+Pour des raisons historiques cette version plus riche est sensiblement plus instable que la
+version legacy. Nous avons donc construit un backup basé sur le jeu de données SIRENE ouvert
+dans le cadre du SPD. Cela permet aux endpoints etablissements et entreprises de fonctionner
+en cas d'indisponibilité de l'INSEE mais ne couvre pas les endpoints etablissement_successeur
+et etablissement_predecesseur.

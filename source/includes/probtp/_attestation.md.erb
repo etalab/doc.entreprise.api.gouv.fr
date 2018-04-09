@@ -1,0 +1,24 @@
+## Attestation
+
+> Format du JSON de retour lorsque l'attestation est disponible :
+
+```json
+{
+  "url":"https://apientreprise.fr/attestations/e71018abdebb1d87624ed8fbf73268f9/attestation_probtp_cotisation_retraite.pdf"
+}
+```
+
+Permet de récupérer l'attestation de cotisation à la retraite fournie par PROBTP
+pour une entreprise, si celle-ci y est éligible.
+La réponse contient un unique champ : l'URL de téléchargement de l'attestation
+au format PDF quand celle-ci est disponible.
+
+### Requête HTTP
+`GET https://entreprise.api.gouv.fr/v2/attestations_cotisation_retraite_probtp/:siret`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siret     | obligatoire | Siret de l'entreprise
+<%= partial "includes/params_obligatoires" %>

@@ -1,0 +1,24 @@
+# Certificats CNETP
+
+> Format du JSON de retour lorsque le certificat est disponible :
+
+```json
+{
+  "url": "https://apientreprise.fr/attestations/40ab0b07d434d0417e8997ce7c5afbef/attestation_cnetp.pdf"
+}
+```
+
+Ce service permet de récupérer l’attestation de cotisation pour les congés payés
+et chomage intempéries pour une entreprise donnée.
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/certificats_cnetp/:siren`
+
+### Paramètres de requête
+
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siren     | obligatoire | Siren de l'entreprise
+<%= partial "includes/params_obligatoires" %>

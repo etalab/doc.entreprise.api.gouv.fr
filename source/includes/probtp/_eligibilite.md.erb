@@ -1,0 +1,34 @@
+## Eligibilité
+
+> Format du JSON de retour lorsque l'entreprise est éligible :
+
+```json
+{
+  "eligible": true,
+  "message": "00 Compte éligible pour attestation de cotisation"
+}
+```
+
+> Format du JSON de retour lorsque l'entreprise n'est pas éligible :
+
+```json
+{
+  "eligible": false,
+  "message": "01 Compte non éligible pour attestation de cotisation"
+}
+```
+
+Ce service permet de savoir si une entreprise est éligible à l'attestation de cotisation retraite fournie par PROBTP.
+Un code 404 est renvoyé si l'entreprise est inconnue des services de PROBTP.
+Dans le cas contraire on renvoie un booléen annoté d'un message (voir les cas
+d'exemples ci-contre).
+
+### Requête HTTP
+`GET https://entreprise.api.gouv.fr/v2/eligibilites_cotisation_retraite_probtp/:siret`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siret     | obligatoire | Siret de l'entreprise
+<%= partial "includes/params_obligatoires" %>

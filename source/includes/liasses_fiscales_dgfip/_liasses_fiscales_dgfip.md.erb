@@ -1,0 +1,75 @@
+## La liasse fiscale
+
+> Format du JSON de retour si la liasse fiscale est disponible
+
+``` json
+{
+  "entreprise": {
+    "denomination" : "Ma Societe",
+    "siren": "XXXXXXXXX"
+  },
+  "declarations": [
+    {
+      "code_regime": "NE",
+      "date_declaration": "2014-04-25",
+      "fin_exercice": "2013-12-31",
+      "duree_exercice": "365 jours",
+      "millesime": "201401",
+      "numero_imprime": "2050",
+      "imprime": {
+        "donnees": [
+          {
+            "code_nref": "300282",
+            "valeur": "157955912"
+          },
+          {
+            "code_nref": "300283",
+            "valeur": "352174931"
+          }
+        ]
+      }
+    },
+    {
+      "code_regime": "RS",
+      "date_declaration": "2014-04-25",
+      "fin_exercice": "2013-12-31",
+      "duree_exercice": "365 jours",
+      "millesime": "201401",
+      "numero_imprime": "2050",
+      "imprime": {
+        "donnees": [
+          {
+            "code_nref": "300282",
+            "valeur": "157955912"
+          },
+          {
+            "code_nref": "300283",
+            "valeur": "352174931"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+Ce service renvoie la liasse fiscale d'une entreprise pour une annéee donnée.
+
+<aside class="warning">
+Le service est pour le moment bouchonné avec le SIREN : 301028346
+</aside>
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/liasses_fiscales_dgfip/:annee/declarations/:siren`
+
+### Paramètre de la requête
+
+Nom     | Présence    | Description
+---     | --------    | -----------
+token   | obligatoire | Votre jeton d'authentification
+siren   | obligatoire | Siren de l'entreprise
+annee   | obligatoire | Année de la liasse demandée
+user_id | obligatoire | Le `user_id` est l’identifiant de l’utilisateur physique qui a fait l’appel. Par exemple sur une place de marché utilisant MPS ça sera un identifiant de l’acheteur public qui consulte la pièce. Il servira en cas d’utilisation anormal de l’API pour remonter à la source et vérifier que l’utilisateur avait bien le droit d’accéder à cette donnée. C’est grâce à lui que vous pourrez répondre à la question “Est-ce que l’utilisateur qui a utilisé l’api avec tel `user_id` à telle heure avait bien le droit de le faire”
+email   | optionnel   | Usage interne. L’email de l’utilisateur effectuant la demande enregistré auprès de la DGFIP, optionnel si l’email est enregistré auprès d'API Entreprise.
+<%= partial "includes/params_obligatoires" %>

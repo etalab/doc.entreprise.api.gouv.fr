@@ -1,0 +1,151 @@
+# Extraits courts INPI
+
+> Format du JSON de retour :
+
+```json
+{
+  "brevets": {
+    "count": 13161,
+    "latests_brevets": [{
+        "titre": "DETERMINATION DE PARAMETRES D&apos;UN MODELE DYNAMIQUE POUR UNE CELLULE ELECTROCHIMIQUE DE BATTERIE",
+        "date_publication": "20170616",
+        "date_depot": "20151214",
+        "numero_publication": "<country>FR</country><doc-number>3045218</doc-number><kind>A1</kind>"
+      },
+      {
+        "titre": "CARACTERISATION D&apos;UNE CELLULE ELECTROCHIMIQUE DE BATTERIE EN VIEILLISSEMENT",
+        "date_publication": "20170616",
+        "date_depot": "20151214",
+        "numero_publication": "<country>FR</country><doc-number>3045217</doc-number><kind>A1</kind>"
+      },
+      {
+        "titre": "BATTERIE COMPRENANT UNE PLURALITE DE CELLULES EN SERIE",
+        "date_publication": "20170616",
+        "date_depot": "20151214",
+        "numero_publication": "<country>FR</country><doc-number>3045216</doc-number><kind>A1</kind>"
+      },
+      {
+        "titre": "DISPOSITIF DE SIGNALISATION LUMINEUSE POUR VEHICULE AUTOMOBILE",
+        "date_publication": "20170616",
+        "date_depot": "20151209",
+        "numero_publication": "<country>FR</country><doc-number>3045132</doc-number><kind>A1</kind>"
+      },
+      {
+        "titre": "DIFFERENTIEL AUTOBLOQUANT POUR UN TRAIN DE ROUES D’UN VEHICULE",
+        "date_publication": "20170616",
+        "date_depot": "20151215",
+        "numero_publication": "<country>FR</country><doc-number>3045123</doc-number><kind>A1</kind>"
+      }
+    ]
+  },
+  "modeles": {
+    "count": 361,
+    "latests_modeles": [{
+        "titre": "Véhicule automobile, vues de détails",
+        "date_publication": "20170602",
+        "date_depot": "20140527",
+        "numero_identification": "20142275"
+      },
+      {
+        "titre": "Véhicule automobile - Vues de détails",
+        "date_publication": "20170210",
+        "date_depot": "20140128",
+        "numero_identification": "20140383"
+      },
+      {
+        "titre": "Véhicule automobile - vues de détails",
+        "date_publication": "20161104",
+        "date_depot": "20131025",
+        "numero_identification": "20134604"
+      },
+      {
+        "titre": "Véhicule automobile - vues de détails",
+        "date_publication": "20161104",
+        "date_depot": "20131025",
+        "numero_identification": "20134605"
+      },
+      {
+        "titre": "Véhicule automobile, vues de détails",
+        "date_publication": "20161104",
+        "date_depot": "20131011",
+        "numero_identification": "20134392"
+      }
+    ]
+  },
+  "marques": {
+    "count": 16,
+    "latests_marques": [{
+        "numero_identification": "4313413",
+        "marque": null,
+        "marque_status": "Marque enregistrée",
+        "depositaire": "PEUGEOT CITROËN AUTOMOBILES SA, Société anonyme",
+        "cle": "FMARK|4313413"
+      },
+      {
+        "numero_identification": "4313464",
+        "marque": "DISTRIGO PARTS DISTRIBUTION",
+        "marque_status": "Marque enregistrée",
+        "depositaire": "PEUGEOT CITROËN AUTOMOBILES SA, Société anonyme",
+        "cle": "FMARK|4313464"
+      },
+      {
+        "numero_identification": "4304459",
+        "marque": "DISTRIGO",
+        "marque_status": "Marque enregistrée",
+        "depositaire": "PEUGEOT CITROËN AUTOMOBILES SA, Société anonyme",
+        "cle": "FMARK|4304459"
+      },
+      {
+        "numero_identification": "4301612",
+        "marque": "FREE2 MOVE",
+        "marque_status": "Demande publiée",
+        "depositaire": "PEUGEOT CITROËN AUTOMOBILES SA, Société anonyme",
+        "cle": "FMARK|4301612"
+      },
+      {
+        "numero_identification": "4301617",
+        "marque": "FREE 2 MOVE LEASE",
+        "marque_status": "Demande publiée",
+        "depositaire": "PEUGEOT CITROËN AUTOMOBILES SA, Société anonyme",
+        "cle": "FMARK|4301617"
+      }
+    ]
+  }
+}
+```
+<aside class="success">Disponible depuis juin 2017</aside>
+
+Cet endpoint permet de récupérer quelques informations sur les derniers brevets, modèles et marques d'une entreprise ainsi que le nombre d'entrées pour chacune de ces catégories enregistrées à l'INPI.
+Le niveau de dépôt et enregistrements demandé est toujours le plus exhaustif demandable chez l'INPI soit France(FR) + Europe(EP) + Monde(WO). Abbréviation entre parenthèses.
+
+Les informations se basent sur celles disponibles pour un siren donné. Néanmoins le siren est une information facultative lors du dépot de dossier à l'INPI, seule la raison sociale compte lors du dépôt pour une personne morale donc le sirenage (appairage des informations avec le siren correspondant) n'est pas complet.
+
+Taux de sirénage des déposants (sur personnes morales FR) :
+
+* Brevets FR et brevets EP délivrés : environ 80% sur les demandes de brevets publiées ces 20 dernières années
+* Marques FR : 60%
+* Marques européennes : 0 % (marques déposées à l’EUIPO)
+* Marques internationales : 0% (marques déposés à l’OMPI)
+* Dessins & Modèles FR : 50%
+* Dessins & Modèles internationaux : 0% (dessins & modèles déposés à l’OMPI)
+
+En raison des points mentionnés ci-dessus :
+
+* L'absence de donnée ne permet pas de conclure qu'il n'existe aucune activité en PI (propriété intellectuelle) pour un siren donné.
+* La présence de donnée ne permet pas de conclure à l'exhaustivité de celles-ci
+
+Les données doivent donc être utilisées de manière qualitative et indicatives
+
+<aside class="notice">Actuellement, un retour vide peut avoir deux significations. Soit le siren n'existe pas et est inconnu des services de l'INPI ; soit aucune donnée n'est enregistrée auprès du fournisseur pour cette société. Vous pouvez si vous le souhaiter coupler vos appels avec une vérification de l'existence dans la base SIRENE d'un siren en particulier qui permettra de trancher. A noter que certaines personnes peuvent demander à être retirées de la diffusion SIRENE dans de très rares cas</aside>
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/extraits_courts_inpi/:siren`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siren     | obligatoire | Siren de l'entreprise
+<%= partial "includes/params_obligatoires" %>
+

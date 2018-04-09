@@ -1,0 +1,25 @@
+# Privileges
+
+> Format du JSON de retour :
+
+```json
+{
+  "privileges": [
+    "entreprises:show:*",
+    "etablissements:show:*",
+    "etablissements:show:*",
+      ]
+}
+
+```
+
+Cet endpoint permet de récupérer la liste des endpoints API Entreprise auquels vous avez accès.
+
+### Requête HTTP
+`GET https://entreprise.api.gouv.fr/v2/privileges`
+
+### Paramètres de requête
+Nom   | Présence    | Description
+---   | --------    | -----------
+token | obligatoire | Votre jeton d'authentification
+

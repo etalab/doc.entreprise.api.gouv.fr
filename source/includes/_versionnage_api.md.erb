@@ -1,0 +1,179 @@
+# Versionnage et évolutions à venir
+
+Nos API sont *versionnées*. Cela permet de mieux suivre les évolutions pour l'équipe de développement ainsi que les équipes intégrant nos API. Cela nous permet aussi d'isoler le code des différentes versions pour limiter les incidents de régression éventuels.
+
+La lecture de la documentation suivante est vivement recommandée, elle contient des éléments importants de calendrier et de formalisme. Nous vous invitons à budgetter des journées de maintenance de vos logiciels appelant nos API de l'ordre de 2 à 3 jours pour chacun d'entre eux. Au cas ou vous voudriez intégrer d'autres fonctionnalités, veuillez prévoir plus.
+
+## Versionnage et format des URLS
+
+Le versionnage des appels se fait grâce au formalisme suivant : `domaine.com/num_version/suite_url_endpoint`. Ce formalisme n'a pas toujours été stable, les équipes et le produit n'avaient pas alors la même maturité et moyens techniques à disposition.
+
+En v1 coexistent 2 formalismes : `apientreprise.fr/api/v1/suite_url_endpoint` et `api.apientreprise.fr/v1/suite_url_endpoint`. Ceci est dû au fait que nous n'avions pas pu débloquer de sous domaine dédié pour servir notre API au tout début d'apientreprise. Nous avions alors utilisé le `/api` pour rendre l'URL plus claire.
+
+En v2 un seul formalisme est accepté `entreprise.api.gouv.fr/v2/suite_url_endpoint` pour les nouveaux clients. Les anciens clients peuvent utiliser l'ancienne infrastructure disponible avec le formalisme `api.apientreprise.fr/v2/suite_url_endpoint` et ce jusqu'au 31 septembre 2018, date de décommissionnement de l'ancienne infrastructure et apientreprise.fr
+
+Ce formalisme a vocation à rester identique dans toutes les versions qui viennent. Ceci étant dit un domaine supplémentaire va être disponible facultativement dans un premier temps. Puis il va devenir obligatoire.
+
+## Stabilité par version : définitions et calendrier
+
+Il existe 4 statuts pour une version donnée de l'API :
+
+* **Stable** : la version est gelée, son code est gelé. Les interventions sur la base ne concernent que des 0 days bugs (bugs découvert après le passage en stable de l'API devant impérativement être corrigés). Cette définition pourra évoluer pour englober les interventions ajoutant des fonctionnalités sur un endpoint donné ou améliorant la qualité de la donnée.
+
+* **Instable** : la version est en cours de développement, les interfaces, le formalisme de certains appels peuvent changer du jour au lendemain. La disponibilité n'est pas optimale pour tous les endpoints. A mesure qu'un endpoint instable murit en termes d'utilisation et de base de code et est testé par les utilisateurs agiles et avancés, la documentation explique quelles attentes on peut avoir en termes de performances sur un endpoint donné. Les équipes de dev et testeuses peuvent communiquer sur certains endpoints ensemble.
+
+* **Deprecated** : la version stable précédente. Aucune intervention d'aucune nature que ce soit n'est prévue, les migrations en version stable sont vivement encouragées. Chaque version depreacted a une date de fin de vie précisée dans la documentation.
+
+* **Retraite** : Les versions deprecated ayant attein leur date de fin de vie sont mises à la retraite, elles ne sont plus servies.
+
+**Jusque fin août 2017 :**
+
+* Stable : v1
+* Instable:  v2 (en partie stable, cette incohérence s'explique par un système et des conventions de versionning récentes)
+
+**1er septembre 2017 :**
+
+* La v1 passe de stable à deprecated
+* La v2 passe d'instable/stable à stable
+* Une v3 voit le jour, les nouveaux endpoints et endpoints remaniés y seront ajoutés petit à petit
+
+**31 mars 2018 :**
+
+* La v1 est mise à la retraite après quelques années de bons et loyaux services
+
+## Domaine et sous domaines de nos API, définition et calendrier
+
+Nos API sont accessibles via `entreprise.api.gouv.fr`. Suite à un renforcement de notre organisation et de nos équipes, le domaine de service des API évoluera :
+
+<ul>
+<li> 1er septembre 2017 : Mise en service progressive de <code class="prettyprint">entreprise.api.gouv.fr</code> comme domaine et sous domaines. La bascule se fera progressivement. </li>
+<li><del> 31 mars 2018</del> => calendrier à déterminer : Mise à la retraite de <code class="prettyprint">api.apientreprise.fr</code> </li>
+</ul>
+
+
+## Faire votre migration v1 => v2
+
+### Différents formats d'appel v1 et contexte historique
+
+L'API Entreprise a commencé comme une expérimentation pour pouvoir servir les données nécessaires au bon fonctionnement de [MPS](https://mps.apientreprise.fr/) (marchés publics simplifiés). Elle a d'emblée été adopté des URL incluant domaine (apientreprise.fr) et version (v1).
+
+La période était alors à l'expérimentation et les libertés et l'importance du projet d'alors ne permettaient pas de satisfaire toutes les demandes de l'équipe technique. Cela a bien changé, néanmoins il reste quelques traces de cette époque notamment dans le format des URL appelées dans l'API Entreprise.
+
+Il existe actuellement 2 formats de préfixe pour appeler en v1:
+
+- https://apientreprise.fr/api/v1/
+- https://api.apientreprise.fr/v1/
+
+Pour couronner le tout certains endpoints (combinaison d'url d'appel + paramètres + verbe http d'appel) ont historiquement été disponibles uniquement dans l'un des formats et non l'autre, nous étions alors en train de transitionner de `apientreprise.fr/api` vers `api.apientreprise.fr`
+
+En v2 la question ne se pose pas, tous les appels se font sur `entreprise.api.gouv.fr`
+
+
+### Changelog et instrucions générique de migration
+
+Pour effectuer la migration vous aurez besoin de vous munir des documentations de la [version 1](https://apientreprise.fr/docs/1.0.html) et de la [version 2](https://apientreprise.fr/documentation). Ouvrez les dans des onglets séparés avant de revenir au guide.
+
+Voici la liste des changements endpoint par endpoint
+
+| Endpoint |Travail de migration|
+| --  | --- |
+| Associations | Changement de préfixe |
+| Probtp / attestations de cotisation retraite | Changement de préfixe |
+| Attestation fiscale | Changement de préfixe, Changement dans l'URL de l'endpoint |
+| Attestation sociale| Changement de préfixe, Changement dans l'URL de l'endpoint |
+| CNETP | Changement de préfixe, Changement dans l'URL de l'endpoint |
+| Entreprises, Etablissements | Voir les éclaircissements ci dessous |
+| Exercices | Changement de préfixe, Changement dans l'URL de l'endpoint |
+| FNTP | Changement de préfixe, Changement dans l'URL de l'endpoint |
+| Extrait infogreffe RCS | Changement de préfixe, Changement dans l'URL de l'endpoint |
+| MSA | Voir les éclaircissements ci-dessous |
+| FNTP | Changement de préfixe, Changement dans l'URL de l'endpoint |
+| OPQIBI | Changement de préfixe, Changement dans l'URL de l'endpoint |
+
+
+### Changement de préfixe
+
+Le préfixe est maintenant la norme `https://entreprise.api.gouv.fr/v2` là ou auparavant on pouvait avoir 2 formes de préfixes :
+
+- `https://api.apientreprise.fr/v1`
+- `https://apientreprise.fr/api/v1`
+
+
+### Changement dans l'URL de l'endpoint
+
+Nous avions en v1 2 formes qui cohabitaient pour la partie appel de l'endpoint:
+
+- nom métier simple par exemple : `/entreprises` permettant de mêler les informations de plusieurs fournisseurs pour `/entreprises` par exemple mandataires sociaux d'infogreffe et addresse de l'entreprise de l'INSEE.
+- nom métier inséré dans un "tiroir" fournisseur par exemple : `/cnetp/certificat`
+
+Pour des soucis de clarté et de cohérences de nommage d'endpoint (notamment de pluriel et singulier), en v2, la seconde option devient ceci : `/certificats_cnetp`
+
+
+### Migration MSA
+
+La donnée fournit par la MSA l'était dans un premier temps sous forme d'un export de leur BDD sans aucune mise à jour de leur part. API Entreprise servait alors cette donnée en lui adjoignant une `date_validite`.
+Ils ont pallié à ce problème de fraîcheur en mettant à disposition la donnée en temps réel via API qu'API Entreprise vous retransmet. En conséquence le champ `date_validite` n'a plus lieu d'être car la donnée est fraîche. Il est donc supprimé en v2 chez nous.
+
+Il faut aussi procéder au changement dans l'URL de l'endpoint ainsi qu'au changement de préfixe
+
+
+### Migrations et éclaircissements `/entreprises` et `/etablissements`
+
+Le fonctionnement n'est pas actuellement clair. Voici ce qu'il en est :
+
+Les endpoints `/v1/etablissements` et `/v1/entreprises` renvoient des données venant d'infogreffe d'une part et d'une API de l'INSEE version 1. Cette version 1
+INSEE comporte la donnée `etat_administratif` pour les entreprises et `etat_administratif_etablissement` pour les établissements.
+Cette données est primordiale pour bien des usages mais n'est pas présente dans les retours de nos endpoints
+`/v2/etablissements` et `/v2/entreprises` qui eux s'appuient sur une autre version de l'API de l'INSEE, la version 2.
+
+En conséquence beaucoup n'ont pas voulu migré pour éviter de perdre les informations d'état administratif. La migration de notre v1 à notre v2 pose donc la question : que se passe
+t'il pour les utilisateurs de cette donnée ? **Nous migrons donc `/v1/etablissements` et `/v1/entreprises` dans notre v2 mais sous un autre nom pour éviter le télescopage avec
+`/v2/etablissements` et `/v2/entreprises` existant.**
+
+En résumé :
+
+- `/v1/entreprises` est maintenu en v2 sous l'url `/v2/entreprises_legacy`. La composition de la réponse est inchangée et comporte `etat_administratif`
+- `/v1/etablissements` est maintenu en v2 sous l'url `/v2/etablissements_legacy`. La composition de la réponse est inchangée et comporte `etat_administratif_etablissement`
+
+Nous mettrons tout en oeuvre pour éviter des mésaventures de ce type à l'avenir.
+
+## Paramètres obligatoires
+
+Il existe 3 paramètres obligatoires depuis septembre 2016. Ces paramètres sont requis par nos fournisseurs de données dans une optique de traçabilité. Ils sont inclus dans la documentation de chacun des endpoints comme suit :
+
+Nom       | Présence    | Description
+---       | --------    | -----------
+<%= partial "includes/params_obligatoires" %>
+
+A compter du 31 mars 2018, les appels ne comportant pas ces paramètres seront rejetés, et un code d'erreur vous sera renvoyé.
+Aucun contrôle qualitatif de la donnée n'est effectué sur ces paramètres.
+
+## Faire votre migration vers la nouvelle infrastructure
+
+### Pourquoi et impacts de la nouvelle infrastructure
+
+2017 a vu plusieurs dysfonctionnements de l'API Entreprise, certains dus a notre infrastructure d'alors. Nous avons alors investigué et pris la décision de passer sur une nouvelle infrastructure. Concrètement cela se traduit par :
+
+- une nouvelle infrastructure dédiée a l'API entreprise, la précédente était mutualisée avec d'autres produits et équipes
+- des changements au niveau de nos pratiques de maintenance et déploiement pour plus de fiabilité
+- un service uniquement de la v2 sur cette nouvelle infrastructure, la v1 étant dépréciée
+- l'ancienne infrastructure réponds aux appels sur `https://apientreprise.fr`
+- la nouvelle infrastructure réponds aux appels sur `https://entreprise.api.gouv.fr`
+- un nouveau service de monitoring disponible `https://dashboard.entreprise.api.gouv.fr`
+- les appels en http ne sont plus redirigés vers https par nos soins, il faudra utiliser https impérativement
+- un changement du volume d'appel total autorisé de 2000 requêtes par tranche de 10 minutes par IP la ou auparavant nous avions 1000 / h, notre roadmap inclue une gestion plus fine des
+accès, nous vous tiendrons informés du calendrier.
+
+Cette nouvelle infrastructure a été recetté puis livrée lors de l'openlabdu 4 décembre 2017.
+
+### Guide de migration et calendrier
+
+Nous vous encourageons vivement à migrer d'infrastructure dès que possible, l'ancienne infrastructure et apientreprise.fr étant décommissionnés au **31 septembre 2018**. N'hésitez pas à nous
+demander de l'aide ou à nous poser des questions en nous envoyant un email à `tech@entreprise.api.gouv.fr`
+
+Pour migrer, il faut au préalable avoir tous vos appels en v2. Une fois ceci fait
+
+- substituer l'ancien domaine en `https://api.apientreprise.fr/` en `https://entreprise.api.gouv.fr/`
+- corriger les éventuels appels que vous feriez en http, en mettant https à la place
+
+C'est tout. Vous conservez vos droits et comptes à l'identique

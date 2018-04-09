@@ -1,0 +1,15 @@
+# Temps de réponses
+
+Nous utilisons un temps dit de `timeout` de 10sec. Le `timeout` est le temps d'attente maximal de
+réponse à une requête. Ce temps est supérieur aux temps d'attente standard car certains
+PDF que nous retournent nos fournisseurs sont volumineux. De plus nous les réuploadons sur un
+espace de stockage distinct avant de vous retourner l'URL pointant sur le dit document.
+L'URL pointe dans notre espace de stockage et non pas directement chez le fournisseur.
+
+Si jamais le(s) fournisseur(s) dépassent le `timeout` interne de 10 secondes, nous vous
+retournons un code d'erreur `504`, signifiant intermédiaire hors délai
+
+En conséquence nous vous recommandons un `timeout` de **12 secondes pour les appels retournant
+un pdf** comme `attestations_sociale_acoss` ou encore `documents_rna`.
+
+Vous pouvez abaisser ce `timeout` à **5 secondes pour les appels ne portant pas sur des documents.**

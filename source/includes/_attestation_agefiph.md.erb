@@ -1,0 +1,38 @@
+# Attestation AGEFIPH
+
+> Format du JSON de retour :
+
+```json
+{
+  "derniere_annee_de_conformite_connue": "2016",
+  "dump_date": 1490693291
+}
+```
+
+```yaml
+{
+  "derniere_annee_de_conformite_connue": "2016",
+  "dump_date": 1490693291
+}
+```
+
+Cette API permet de récupérer la dernière année de conformité connue des
+services de l'AGEFIPH pour une entreprise.
+
+Cette donnée étant issue d'un dump fourni par l'AGEFIPH, nous renvoyons aussi la
+date de mise à disposition de ce dump indiquant la dernière date de validité des
+informations renvoyées.
+
+### Requête HTTP
+`GET https://entreprise.api.gouv.fr/v2/attestations_agefiph/:siret`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siret     | obligatoire | Siret de l'entreprise
+<%= partial "includes/params_obligatoires" %>
+
+<aside class="notice">
+La date du dump est renvoyée au format timestamp UNIX !
+</aside>

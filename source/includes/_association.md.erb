@@ -1,0 +1,83 @@
+# Associations RNA
+
+> Format du JSON de retour lorsque l'association est trouvée :
+
+``` json
+{
+  "association" : {
+    "id"                 : "W751135389",
+    "titre"              : "ALLIANCE DU COEUR: UNION NATIONALE DES FEDERATIONS ET ASSOCIATIONS DE MALADES CARDIOVASCULAIRES",
+    "objet"              : "information, soutien, solidarité et accompagnement psycho médico social des personnes malades cardiovasculaires et de leurs proches..."
+    "siret"              : "42135938100025",
+    "siret_siege_social" : "42135938100033",
+    "date_creation"      : "1993-02-11",
+    "date_declaration"   : "2013-06-28",
+    "date_publication"   : "1993-03-03",
+    "date_dissolution"   : null,
+    "adresse_siege"      : {
+      "complement"       : "  ",
+      "numero_voie"      : "10",
+      "type_voie"        : "RUE",
+      "libelle_voie"     : "Lebouis",
+      "distribution"     : "_",
+      "code_insee"       : "75120",
+      "code_postal"      : "75014",
+      "commune"          : "Paris"
+    },
+    "code_civilite_dirigeant" : null,
+    "civilite_dirigeant"      : null,
+    "code_etat"               : null,
+    "etat"                    : "true",
+    "code_groupement"         : null,
+    "groupement"              : "Simple",
+    "mise_a_jour"             : "2013-06-28"
+  }
+}
+```
+
+``` yaml
+{
+  "association" : {
+    "id"               : { "source" : "RNA", "length" : 10 },
+    "titre"            : { "source" : "RNA", "length" : 250 },
+    "objet"            : { "source" : "RNA", "length" : "" },
+    "siret"            : { "source" : "RNA", "length" : 14 },
+    "date_creation"    : { "source" : "RNA", "length" : 10 },
+    "date_declaration" : { "source" : "RNA", "length" : 10 },
+    "date_publication" : { "source" : "RNA", "length" : 10 },
+    "date_dissolution" : { "source" : "RNA", "length" : 10 },
+    "adresse_siege" : {
+      "complement"   : { "source" : "RNA", "length" : 76 },
+      "numero_voie"  : { "source" : "RNA", "length" : 10 },
+      "type_voie"    : { "source" : "RNA", "length" : 4 },
+      "libelle_voie" : { "source" : "RNA", "length" : 42 },
+      "distribution" : { "source" : "RNA", "length" : 38 },
+      "code_insee"   : { "source" : "RNA", "length" : 5 },
+      "code_postal"  : { "source" : "RNA", "length" : 5 },
+      "commune"      : { "source" : "RNA", "length" : 45 }
+      },
+    "code_civilite_dirigeant" : { "source" : "RNA", "length" : 2 },
+    "civilite_dirigeant"      : { "source" : "RNA", "length" : "" },
+    "code_etat"               : { "source" : "RNA", "length" : 1 },
+    "etat"                    : { "source" : "RNA" },
+    "code_groupement"         : { "source" : "RNA", "length" : 1 },
+    "groupement"              : { "source" : "RNA" },
+    "mise_a_jour"             : { "source" : "RNA" }
+  }
+}
+
+```
+
+Ce service permet de chercher des information relative à une association par son siret ou par son numéro RNA.
+
+Le champ `siret` n'est pas toujours correctement rempli.
+
+### Requête HTTP
+`GET https://entreprise.api.gouv.fr/v2/associations/:id`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+id        | obligatoire | Le numéro RNA de l'association, ou le numéro de siret
+<%= partial "includes/params_obligatoires" %>

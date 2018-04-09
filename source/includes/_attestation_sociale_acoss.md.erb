@@ -1,0 +1,45 @@
+# Attestation Sociale ACOSS
+
+> Format du JSON de retour lorsque l'attestation sociale est disponible :
+
+``` json
+{
+    "url":
+    "https://apientreprise.fr/attestations/d657ee9dba286d9b091fc33da0000bcb/attestation_sociale.pdf"
+}
+```
+
+Cette API permet de récupérer l’attestation de vigilance d’une entreprise.
+
+L’attestation de vigilance permet de prouver que l’entreprise respecte les règles applicables en matière de lutte contre le travail dissimulé.
+
+Exemple de document renvoyé : [Attestation de Marché publicUrssaf](https://api.apientreprise.fr/examples/attestation_sociale.pdf)
+
+**Combien de temps est valide l’attestation de vigilance ?**
+
+L’attestation de vigilance est valide 6 mois à compter de la dernière date de période analysée. Celle-ci dépend de la situation de chaque entreprise et de la dernière déclaration enregistrée dans le système.
+
+**L’api ne renvoie pas de pièce, est ce que ça veut dire que l’entreprise n’est pas à jour ?**
+
+Non, dans certain cas, nous ne pouvons pas récupérer l’attestation. Ça ne signifie pas que l’entreprise n’est pas à jour.
+
+**L’api ne renvoie pas la pièce, est ce que ça veut dire qu’elle ne sera jamais disponible ?**
+
+Non, dans certain cas, la requête lance une demande dans le système de l’ACOSS qui necessite un traitement par un gestionnaire avant que l’attestation soit disponible.
+
+**Pourquoi ne puis-je plus avoir l'Attestation de Marché Publique ?**
+
+L'AMP a été supprimée les inforations sont maintenant contenus dans l'attestation de vigilance.
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/attestations_sociales_acoss/:siren`
+
+### Paramètres de requête
+
+Nom              | Présence    | Description
+---              | --------    | -----------
+token            | obligatoire | Votre jeton d'authentification
+siren            | obligatoire | Siren de l'entreprise
+type_attestation | optionnel   | Le type d'attestation demandé, actuellement seul `AVG_UR` (Attestation de Vigilance Urssaf) est disponible
+<%= partial "includes/params_obligatoires" %>

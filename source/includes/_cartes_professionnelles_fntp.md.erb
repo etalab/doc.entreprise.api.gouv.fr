@@ -1,0 +1,23 @@
+# Cartes Professionnelles FNTP
+
+> Format du JSON de retour lorsque la carte professionnelle est disponible :
+
+``` json
+{
+    "url":
+    "https://apientreprise.fr/attestations/f01a8f1f6e45c831add8173dbae64c0e/attestation_fntp_carte_professionnelle.pdf"
+}
+```
+
+Ce service permet de récupérer la carte professionnelle d’entrepreneur de travaux
+publics d’une entreprise.
+
+### Requête HTTP
+`GET https://entreprise.api.gouv.fr/v2/cartes_professionnelles_fntp/:siren`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siren     | obligatoire | Siren de l'entreprise
+<%= partial "includes/params_obligatoires" %>

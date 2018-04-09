@@ -1,0 +1,47 @@
+# Attestation Fiscale DGFIP
+
+> Format du JSON de retour lorsque l'attestation fiscale est disponible auprès
+> de la DGFIP
+
+``` json
+{
+  "url":
+  "https://apientreprise.fr/attestations/d657ee9dba286d9b091fc33da0000bcb/attestation_fiscale.pdf"
+}
+```
+
+Cette API permet de récupérer l’attestation fiscale d’une entreprise.
+
+L’attestation fiscale atteste que l’entreprise est à jour des ses obligations fiscales à la date du 31/12 de l’année précédente.
+
+Par exemple si vous demandez une attestation en mars 2015, l’attestation fiscale vous indiquera que l’entreprise est à jour de ses obligations fiscale lui incombant au 31/12/2014.
+
+Exemple de document renvoyé : [Attestation fiscale](https://api.apientreprise.fr/examples/attestation_fiscale.pdf)
+
+**Pendant combien de temps l’attestation fiscale est-elle valide ?**
+
+L’attestation fiscale est valide un an sur une année civile (jusqu’au 31/12/AAAA).
+
+**L’api ne renvoie pas de pièce, est ce que ça veut dire que l’entreprise n’est pas à jour ?**
+
+Non, dans certain cas particulier, nous ne pouvons pas renvoyer l’attestation. Ça ne veut pas dire que l’entreprise n’est pas à jour. Il faut se rapprocher de l’entreprise pour lui demander la pièce directement.
+
+**L’api ne renvoie pas la pièce, est ce que ça veut dire qu’elle ne sera jamais disponible ?**
+
+Non, si une entreprise se voit refuser la délivrance de l’attestation pour cause de carence de ses déclarations ou de ses paiements, cette non délivrance n’est pas définitive pour toute l’année N. Si ensuite elle régularise sa situation pour les années N-1 et antérieures, alors l’attestation de régularité lui sera délivrée.
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/attestations_fiscales_dgfip/:siren`
+
+### Paramètres de requête
+
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siren     | obligatoire | Siren de l'entreprise
+user_id   | obligatoire | Le `user_id` est l’identifiant de l’utilisateur physique qui a fait l’appel. Par exemple sur une place de marché utilisant MPS ça sera un identifiant de l’acheteur public qui consulte la pièce. Il servira en cas d’utilisation anormal de l’API pour remonter à la source et vérifier que l’utilisateur avait bien le droit d’accéder à cette donnée. C’est grâce à lui que vous pourrez répondre à la question “Est-ce que l’utilisateur qui a utilisé l’api avec tel `user_id` à telle heure avait bien le droit de le faire”
+siren_is  | optionnel   | Si l’entreprise appartient au groupe IS: le numéro de siren référent du groupe
+siren_tva | optionnel   | Si l’entreprise appartient au groupe TVA: le numéro de siren référent du groupe
+email     | optionnel   | Usage interne. L’email de l’utilisateur effectuant la demande enregistré auprès de la DGFIP, optionnel si l’email est enregistré auprès d'API Entreprise.
+<%= partial "includes/params_obligatoires" %>

@@ -1,0 +1,61 @@
+# Etablissements Legacy
+
+> Format du JSON renvoyé :
+
+```json
+{
+  "etablissement": {
+    "siege_social": true,
+    "siret": "41816609600069",
+    "naf": "6202A",
+    "libelle_naf": "Conseil en systèmes et logiciels informatiques",
+    "date_mise_a_jour": 1420585200,
+    "etat_administratif_etablissement": {
+      "value": "Actif",
+      "date_mise_a_jour": 1108594800
+    },
+    "adresse": {
+    "l1": "OCTO-TECHNOLOGY",
+    "l2": "50 AV DES CHAMPS ELYSEES",
+    "l3": "75008 PARIS 8",
+    "l4": null,
+    "l5": null,
+    "l6": null,
+    "l7": null,
+    "numero_voie": "50",
+    "type_voie": "AV",
+    "nom_voie": "DES CHAMPS ELYSEES",
+    "complement_adresse": null,
+    "code_postal": "75008",
+    "localite": "PARIS 8",
+    "code_insee_localite": "75108"
+    }
+  },
+  "gateway_error": false
+}
+```
+
+<aside class="notice">
+Cet endpoint correspond à un portage legacy à l'identique de l'ancien <span style="font-weight: bold";>/v1/etablissements</span>
+</aside>
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/etablissements_legacy/:siret`
+
+### Paramètres de requête
+
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siret     | obligatoire | Siret de l'entreprise
+<%= partial "includes/params_obligatoires" %>
+
+Le JSON de retour est composé de deux clés :
+
+* `etablissement` contient les informations de l'établissement
+* `gateway_error` n'est plus à true que si l'INSEE nous renvoie une indisponibilité (503)
+
+La liste exhaustive de tous les champs disponibles pour `etablissement` est disponible dans l'exemple ci-contre.
+
+Les informations d’adresse sont issues des adresses géographiques et normalisées. Nous ne prenons pas en compte l’adresse déclarée. La géolocalisation de l’entreprise peut être faite grâce au service de géocodage suivant : <a href='http://adresse.data.gouv.fr'>http://adresse.data.gouv.fr</a>

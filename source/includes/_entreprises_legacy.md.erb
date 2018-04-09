@@ -1,0 +1,240 @@
+# Entreprises Legacy
+
+> Format du JSON de retour :
+
+```json
+{
+  "entreprise": {
+    "siren": "418166096",
+      "capital_social": 509525,
+      "numero_tva_intracommunautaire": "FR16418166096",
+      "forme_juridique": "SA à directoire (s.a.i.)",
+      "forme_juridique_code": "5699",
+      "nombre_etablissements_actifs": 1,
+      "nom_commercial": "OCTO-TECHNOLOGY",
+      "procedure_collective": false,
+      "raison_sociale": "OCTO-TECHNOLOGY",
+      "siret_siege_social": "41816609600069",
+      "code_effectif_entreprise": "22",
+      "date_creation": 891381600,
+      "nom": null,
+      "prenom": null,
+      "etat_administratif": {
+        "value": "Actif",
+        "date_mise_a_jour": 891381600
+      },
+      "date_radiation": null,
+      "mandataires_sociaux": [
+      {
+        "nom": "HISQUIN",
+        "prenom": "FRANCOIS",
+        "fonction": "PRESIDENT DU DIRECTOIRE",
+        "date_naissance": "1965-01-27",
+        "date_naissance_timestamp": -155523600,
+        "dirigeant": true,
+        "raison_sociale": "",
+        "identifiant": "",
+        "type": "PP"
+      },
+      {
+        "nom": "NIBOUREL",
+        "prenom": "CHRISTIAN",
+        "fonction": "PRESIDENT DU CONSEIL DE SURVEILLANCE",
+        "date_naissance": "1958-01-09",
+        "date_naissance_timestamp": -378003600,
+        "dirigeant": true,
+        "raison_sociale": "",
+        "identifiant": "",
+        "type": "PP"
+      },
+      {
+        "nom": "DEGONSE",
+        "prenom": "GERARD",
+        "fonction": "VICE-PRESIDENT",
+        "date_naissance": "1947-07-03",
+        "date_naissance_timestamp": -710038800,
+        "dirigeant": true,
+        "raison_sociale": "",
+        "identifiant": "",
+        "type": "PP"
+      },
+      {
+        "nom": "CINQUIN",
+        "prenom": "LUDOVIC",
+        "fonction": "MEMBRE DU DIRECTOIRE",
+        "date_naissance": "1972-01-25",
+        "date_naissance_timestamp": 65142000,
+        "dirigeant": true,
+        "raison_sociale": "",
+        "identifiant": "",
+        "type": "PP"
+      },
+      {
+        "nom": "DEGONSE",
+        "prenom": "GERARD",
+        "fonction": "MEMBRE DU CONSEIL DE SURVEILLANCE",
+        "date_naissance": "1947-07-03",
+        "date_naissance_timestamp": -710038800,
+        "dirigeant": true,
+        "raison_sociale": "",
+        "identifiant": "",
+        "type": "PP"
+      },
+      {
+        "nom": "BEN MAHMOUD",
+        "prenom": "SIHEM",
+        "fonction": "MEMBRE DU CONSEIL DE SURVEILLANCE",
+        "date_naissance": "1967-03-13",
+        "date_naissance_timestamp": -88563600,
+        "dirigeant": true,
+        "raison_sociale": "",
+        "identifiant": "",
+        "type": "PP"
+      },
+      {
+        "nom": "BOKOBZA",
+        "prenom": "JEAN-PIERRE",
+        "fonction": "MEMBRE DU CONSEIL DE SURVEILLANCE",
+        "date_naissance": "1961-04-24",
+        "date_naissance_timestamp": -274237200,
+        "dirigeant": true,
+        "raison_sociale": "",
+        "identifiant": "",
+        "type": "PP"
+      },
+      {
+        "nom": "CAMPBELL",
+        "prenom": "ALLAN",
+        "fonction": "MEMBRE DU CONSEIL DE SURVEILLANCE",
+        "date_naissance": "1961-03-31",
+        "date_naissance_timestamp": -276310800,
+        "dirigeant": true,
+        "raison_sociale": "",
+        "identifiant": "",
+        "type": "PP"
+      },
+      {
+        "nom": "PLANTIN",
+        "prenom": "JEAN-FRANCOIS",
+        "fonction": "COMMISSAIRE AUX COMPTES TITULAIRE",
+        "date_naissance": "1959-01-27",
+        "date_naissance_timestamp": -344912400,
+        "dirigeant": true,
+        "raison_sociale": "",
+        "identifiant": "",
+        "type": "PP"
+      },
+      {
+        "nom": "",
+        "prenom": "",
+        "fonction": "COMMISSAIRE AUX COMPTES TITULAIRE",
+        "date_naissance": "",
+        "date_naissance_timestamp": 0,
+        "dirigeant": true,
+        "raison_sociale": "MAZARS - SOCIETE ANONYME",
+        "identifiant": "784824153",
+        "type": "PM"
+      },
+      {
+        "nom": "",
+        "prenom": "",
+        "fonction": "COMMISSAIRE AUX COMPTES SUPPLEANT",
+        "date_naissance": "",
+        "date_naissance_timestamp": 0,
+        "dirigeant": true,
+        "raison_sociale": "BCRH & ASSOCIES - SOCIETE A RESPONSABILITE LIMITEE",
+        "identifiant": "490092574",
+        "type": "PM"
+      },
+      {
+        "nom": "SIMON",
+        "prenom": "JEAN-LOUIS",
+        "fonction": "COMMISSAIRE AUX COMPTES SUPPLEANT",
+        "date_naissance": "1959-02-17",
+        "date_naissance_timestamp": -343098000,
+        "dirigeant": true,
+        "raison_sociale": "",
+        "identifiant": "",
+        "type": "PP"
+      }
+    ]
+  },
+  "gateway_error": false
+}
+```
+
+<aside class="notice">
+Cet endpoint correspond à un portage legacy à l'identique de l'ancien <span style="font-weight: bold";>/v1/entreprises</span>
+</aside>
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/entreprises_legacy/:siren`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siren     | obligatoire | Siren de l'entreprise
+<%= partial "includes/params_obligatoires" %>
+
+Cet endpoint permet de récupérer des informations concernant une entreprise.
+Le JSON de retour est composé de deux clés :
+
+* `entreprise` contient les données de l'entreprise
+* `gateway_error` indique si un des fournisseurs de données n'a pas
+  correctement fonctionné.
+
+### Entreprise
+
+La liste exhaustive des champs renvoyés est disponible dans l'exemple ci-contre.
+Voici néanmoins quelques précisions sur certaines clés :
+
+* les diverses dates (`date_debut`, `date_creation`, `date_fin`) sont fournies
+  au format timestamp UNIX ;
+* le champ `procedure_collective` est à ignorer : il renvoie toujours false et
+  sera supprimé à terme ;
+* le champ `dirigeant` renvoie toujours `true`. INFOGREFFE devrait mettre à
+  disposition un nouveau service et fournir la liste des dirigeants ;
+* le champ `code_effectif_entreprise` correspond au référentiel de l'INSEE :
+  <a href='http://www.sirene.fr/sirene/public/variable/tefen'>Nomenclature
+  INSEE</a> ;
+* le champ `numero_tva_intracommunautaire` correspond au numéro de TVA
+  intracommunautaire également appelé numéro d'identification fiscale NIF ; Il est
+  calculé par nos soins et est purement indicatif
+* les champs `forme_juridique` et `forme_juridique_code` sont issus de la <a
+  href='http://www.sirene.fr/sirene/public/variable/tefen'>Nomenclature
+  INSEE</a> ;
+* le champ `date_radiation` est NULL si l'entreprise n'est pas radiée du
+  registre du commerce. Dans le cas contraire la date de radiation est fournie
+  au format timestamp.
+
+<a href='http://www.sirene.fr/static-resources/doc/sirenage_interpretation.pdf?version=2.6.2'>Sources</a>
+
+### Mandataires sociaux
+
+Il y a deux types de mandataires sociaux : les personnes physiques et les
+personnes morales.
+
+Pour une personne physque le champ `type` vaut `"PP"` et les données fournies
+sont :
+
+* `nom`
+* `prenom`
+* `fonction`
+* `dirigeant`
+* `date_naissance`
+* `date_naissance_timestamp`
+* `type`
+
+Pour une personne morale le champ `type` vaut `"PM"` et les données fournies
+sont :
+
+* `fonction`
+* `dirigeant`
+* `raison_sociale`
+* `identifiant` (élément facultatif qui peut être vide ou bie un nombre de 7, 8
+  ou 9 digits)
+* `type`
+
+Tous les autres champs retournés sont vides.

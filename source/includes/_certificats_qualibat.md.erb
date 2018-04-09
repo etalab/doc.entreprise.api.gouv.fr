@@ -1,0 +1,23 @@
+# Certificats QUALIBAT
+
+> Format du JSON de retour lorsque le certificat est disponible :
+
+```json
+{
+  "url":"https://storage.entreprise.api.gouv.fr/siade/attestation%2D3a858b299ce9f370e6bdc666d0616617_qualibat.pdf"
+}
+```
+
+Ce service permet de récupérer le certificat QUALIBAT d'une entreprise de
+construction donnée.
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/certificats_qualibat/:siret`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siret     | obligatoire | Siret de l'entreprise
+<%= partial "includes/params_obligatoires" %>

@@ -1,0 +1,27 @@
+# Codes erreur
+
+Les APIs Entreprise utilisent les codes d'erreurs suivant.
+
+
+Error Code | Meaning
+---------- | -------
+206        | Réponse incomplete - Un des fournisseurs de données a renvoyé une erreur, la réponse est incomplète (les valeurs concernées contiennent le message par défaut: `Donnée indisponible`)
+400        | Mauvaise requête -- Le format de la requête est incorrecte
+401        | Non autorisé -- Token invalide ou manquant
+403        | Interdit -- Votre jeton ne vous donne pas accès à cette ressource
+404        | Non trouvé -- L'entreprise demandée n'a pas été trouvée
+422        | Entité non traitable -- Le format de la donnée passée en paramètre n'est pas accepté
+500        | Erreur interne -- Une erreur interne est survenue
+502        | Passerelle incorrecte -- Mauvaise réponse envoyée par le fournisseur de données
+503        | Service non disponible -- Service temporairement indisponible ou en maintenance
+504        | Intermédiaire hors délai -- Le(s) producteur(s) de données ont mis trop de temps à répondre, nous limitons notre temps d'attente de leur retour à 10 secondes.
+
+Lorsque un endpoint retourne des données aggrégées de plusieurs fournisseurs, le
+json renvoyé contient un champ `gateway_error`. C'est un booléen et sa valeur
+vaut `true` lorsque qu'une erreur survient auprès d'au moins un fournisseur.
+
+<aside class="notice">
+Les erreurs renvoyées par API Entreprise sont généralement annotées d'un message
+précisant la nature de l'erreur rencontrée.
+</aside>
+

@@ -1,0 +1,105 @@
+# Certificats OPQIBI
+
+> Format du JSON de retour lorsque le certificat est disponible
+
+``` json
+{
+  "siren"                           : "435054481",
+  "numero_certificat"               : "14 12 2819",
+  "date_de_delivrance_du_certificat": "01/12/2016",
+  "duree_de_validite_du_certificat" : "valable un an",
+  "assurance"                       : "GROUPAMA",
+  "url"                             : "http://opqibi.com/fiche.php?id=2975",
+  "qualifications": [
+  {
+    "code_qualification": "0316",
+    "nom"               : "CSPS de niveau 2 en phases \"conception et réalisation\"",
+    "definition"        : "Aptitude à assurer la mission de coordination sécurité et protection de la santé en phases de conception et réalisation des opérations de 2ème  catégorie.<br />La mission commence obligatoirement en début de la phase de conception et se termine avec la remise du DIUO en fin d'opération.",
+    "rge"               : "0"
+  },
+  {
+    "code_qualification": "0901",
+    "nom"               : "Repérage et diagnostic amiante avant travaux",
+    "definition"        : "Concerne tous types de bâtiments, d'ouvrages d'infrastructure, d'équipements et de matériels susceptibles de contenir de l'amiante et pour lesquels des travaux de modification ou de démolition sont envisagés.<br /><br />Porte sur la recherche, la localisation et l'identification des matériaux et produits contenant de l'amiante (MPCA) selon les normes et textes en vigueur, tâche qui doit être entreprise avant la réalisation desdits travaux.<br /><br />Comprend en particulier la rédaction du rapport de repérage et l'établissement d'une cartographie permettant de localiser précisément les MPCA.<br /><br />",
+    "rge"               : "0"
+  },
+  {
+    "code_qualification": "0902",
+    "nom"               : "Maîtrise d'oeuvre en désamiantage",
+    "definition"        : "Validation du \"diagnostic amiante\", analyse des risques, définition des travaux d'élimination ou de neutralisation de l'amiante présent dans les composants et équipements du BTP, consultation des entreprises, analyse du plan de retrait, suivi des travaux et des marchés jusqu'à la réception finale.",
+    "rge"               : "0"
+  }
+  ],
+  "date_de_validite_des_qualifications" : "01/12/2018",
+  "qualifications_probatoires" : [
+  {
+    "code_qualification" : "0316",
+    "nom"                : "CSPS de niveau 2 en phases \"conception et réalisation\"",
+    "definition"         : "Aptitude à assurer la mission de coordination sécurité et protection de la santé en phases de conception et réalisation des opérations de 2ème  catégorie.<br />La mission commence obligatoirement en début de la phase de conception et se termine avec la remise du DIUO en fin d'opération.",
+    "rge"                : "0"
+  },
+  {
+    "code_qualification" : "0317",
+    "nom"                : "CSPS de niveau 1 en phases \"conception et réalisation\"",
+    "definition"         : "Aptitude à assurer la mission de coordination sécurité et protection de la santé en phases de conception et réalisation des opérations de 1ère  catégorie.<br />La mission commence obligatoirement en début de la phase de conception et se termine avec la remise du DIUO en fin d'opération.<br /><br />Nota :  L'attribution de la qualification 0317 entraîne automatiquement celle de la qualification 0316.",
+    "rge"                : "0"
+  }
+  ],
+  "date_de_validite_des_qualifications_probatoires": "01/12/2016"
+}
+```
+
+``` yaml
+{
+  siren                            : {source : 'apientreprise', length : 9},
+  numero_certificat                : {source : 'OPQIBI',        length : ''},
+  date_de_delivrance_du_certificat : {source : 'OPQIBI',        length : ''},
+  duree_de_validite_du_certificat  : {source : 'OPQIBI',        length : ''},
+  assurance                        : {source : 'OPQIBI',        length : ''},
+  url                              : {source : 'OPQIBI',        length : ''},
+  qualifications                   : {
+      code_qualification           : {source : 'OPQIBI',        length : ''},
+      nom                          : {source : 'OPQIBI',        length : ''},
+      definition                   : {source : 'OPQIBI',        length : ''},
+      rge                          : {source : 'OPQIBI',        length : ''}
+  },
+  date_de_validite_des_qualifications : {source : 'OPQIBI', length : ''},
+  qualifications_probatoires          : {
+      code_qualification              : {source : 'OPQIBI', length : ''},
+      nom                             : {source : 'OPQIBI', length : ''},
+      definition                      : {source : 'OPQIBI', length : ''},
+      rge                             : {source : 'OPQIBI', length : ''}
+  },
+  date_de_validite_des_qualifications_probatoires: {source: 'OPQIBI', length: ''}
+}
+
+```
+
+L'<a href="http://www.opqibi.com">OPQIBI</a> est l'Organisme de Qualification de l'Ingénierie. Toutes les données de cette API sont fournies par l'OPQIBI exclusivement.
+Nous récupérons le certificat d'une entreprise grâce à son SIREN. Ce certificat permet de connaitre les qualifications et les qualifications probatoires qu'elle maitrise.
+
+Une qualification atteste de la capacité d’une entreprise d’ingénierie pour réaliser une prestation déterminée. Elle est attribuée sur la base de critères légaux, administratifs, juridiques, financiers et techniques (moyens (humains, matériels, méthodologiques) et références).
+
+Une qualification probatoire est attribuée à une entreprise nouvellement créée ou en cours de diversification qui ne dispose pas encore de référence ou en nombre insuffisant mais satisfait aux critères légaux, administratifs, juridiques et moyens.
+
+S’agissant des durées de validité, il est important de noter ce qui suit :
+
+<ul>
+<li>Un certificat est valable 1 an</li>
+<li>Une qualification est valable 4 ans sous réserve de 3 contrôles annuels</li>
+<li>Une qualification probatoire est valable 1 an</li>
+</ul>
+
+Une entreprise possède au moins une qualification ou une qualification probatoire.
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/certificats_opqibi/:siren`
+
+### Paramètres de requête
+
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siren     | obligatoire | Siren de l'entreprise
+<%= partial "includes/params_obligatoires" %>

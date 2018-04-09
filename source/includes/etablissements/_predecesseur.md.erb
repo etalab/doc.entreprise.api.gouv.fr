@@ -1,0 +1,29 @@
+## Prédecesseur
+
+> Format du JSON de retour :
+
+```json
+{
+  "predecesseur": {
+    "siret": "78414518700133",
+    "predecesseur_siret": "63201210001085",
+    "predecesseur_date_etablissement": 1451602800000,
+    "transfert_siege": false
+  },
+  "gateway_error": false
+}
+```
+
+Cette API permet de récupérer le siret de l'établissement précédent de celui passé en paramètre dans le cas où ce dernier est fermé. La liste exhaustive des champs renvoyés est disponible dans l'exemple ci-contre.
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/etablissements/:siret/predecesseur`
+
+### Paramètres de requête
+
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siret     | obligatoire | Siret de l'entreprise
+<%= partial "includes/params_obligatoires" %>

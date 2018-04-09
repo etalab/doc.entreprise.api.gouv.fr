@@ -1,0 +1,45 @@
+# Documents Association
+
+> Format du JSON de retour lorsque le certificat est disponible :
+
+```json
+{
+  "nombre_documents": 3,
+  "documents": [
+    {
+      "type": "Statuts",
+      "url": "https://apientreprise.fr/attestations/40ab0b07d434d0417e8997ce7c5afbef/attestation_document_association.pdf",
+      "timestamp": "1500660325"
+    }, ...
+  ]
+}
+```
+
+```yaml
+{
+  "nombre_documents": { "source" : "RNA", "length" : '' },
+  "documents": [
+    {
+      "type":       { "source" : "RNA-DOC", "length" : '' },
+      "url":        { "source" : "APIENTREPRISE/RNA-DOC", "length" : '' },
+      "timestamp:   { "source" : "RNA-DOC", "length": 10}
+    }
+  ]
+}
+```
+
+<aside class="success">Disponible depuis juillet 2017</aside>
+
+Ce service permet de récupérer les documents connus pour une association à partir d'un siret ou un waldec.
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/documents_associations/:association_id`
+
+### Paramètres de requête
+
+Nom                 | Présence    | Description
+---                 | --------    | -----------
+token               | obligatoire | Votre jeton d'authentification
+association_id      | obligatoire | Siret ou numéro Waldec de l'association
+<%= partial "includes/params_obligatoires" %>

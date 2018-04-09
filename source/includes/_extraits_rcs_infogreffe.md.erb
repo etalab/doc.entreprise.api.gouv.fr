@@ -1,0 +1,49 @@
+# Infogreffe - Extrait RCS
+
+> Format JSON de retour lorsque le siren est trouvé :
+
+```json
+{
+  "siren": "418166096",
+  "date_immatriculation": "1998-03-27",
+  "date_immatriculation_timestamp": 890953200,
+  "date_extrait": "21 AVRIL 2017",
+  "observations": [
+    {
+      "date": "2000-02-23",
+      "date_timestamp": 951260400,
+      "numero": "12197",
+      "libelle": " LA SOCIETE NE CONSERVE AUCUNE ACTIVITE A SON ANCIEN SIEGE "
+    }
+  ]
+}
+```
+
+```yaml
+{
+  "siren"               :           { "source" : "INFOGREFFE", "length" : 9 },
+  "date_immatriculation":           { "source" : "INFOGREFFE", "length" : 10 },
+  "date_immatriculation_timestamp": { "source" : "INFOGREFFE", "length" : '' },
+  "date_extrait":                   { "source" : "INFOGREFFE", "length" : '' },
+  "observations": [
+    {
+      "date":                       { "source" : "INFOGREFFE", "length" : 10 },
+      "date_timestamp":             { "source" : "INFOGREFFE", "length" : '' },
+      "numero":                     { "source" : "INFOGREFFE", "length" : '' },
+      "libelle":                    { "source" : "INFOGREFFE", "length" : '' },
+    }
+  ]
+}
+```
+
+Cet endpoint permet de récupérer auprès d'Infogreffe un extrait des données présentes dans le Registre du commerce et des sociétés pour un numéro de siren donné.
+
+### Requête HTTP
+`GET https://entreprise.api.gouv.fr/v2/extraits_rcs_infogreffe/:siren`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siren     | obligatoire | Le numéro de siren de l'entreprise
+<%= partial "includes/params_obligatoires" %>
