@@ -13,6 +13,8 @@
       "nom_commercial": "OCTO-TECHNOLOGY",
       "procedure_collective": false,
       "enseigne": null,
+      "naf_entreprise": "6202A",
+      "libelle_naf_entreprise": "Conseil en systèmes et logiciels informatiques",
       "raison_sociale": "OCTO-TECHNOLOGY",
       "siret_siege_social": "41816609600051",
       "code_effectif_entreprise": "31",
@@ -198,9 +200,30 @@ Voici néanmoins quelques précisions sur certaines clés :
 * les champs `forme_juridique` et `forme_juridique_code` sont issus de la <a
   href='http://www.sirene.fr/sirene/public/variable/tefen'>Nomenclature
   INSEE</a> ;
+* Le champ `procedure_collective` est un boolean qui indique si l’entreprise
+  a une <a href='http://fr.wikipedia.org/wiki/Proc%C3%A9dure_collective'>procédure
+  collective</a> en cours : si c’est false, l’entreprise est active, si c’est true,
+  l’entreprise est soit en redressement, en liquidation soit en procédure de sauvegarde
+* Les champs `forme_juridique` et `forme_juridique_code` sont issus de la nomenclature
+  de l’INSEE que vous pouvez trouver là : <a href='http://www.insee.fr/fr/methodes/default.asp?page=nomenclatures/cj/cj-arbre.htm'>Nomenclature INSEE</a>
 * le champ `date_radiation` est NULL si l'entreprise n'est pas radiée du
   registre du commerce. Dans le cas contraire la date de radiation est fournie
   au format timestamp.
+
+Le champ `etat_administratif` est l’état juridique de l’entreprise (source
+INSEE) : Cette variable est une donnée de l’entreprise. Elle qualifie l’entreprise
+à un moment donné. Une entreprise au répertoire SIRENE :
+
+* peut être juridiquement active tant que sa personnalité morale existe, c’est à dire tant qu’elle n’a pas déclaré sa cessation.
+* peut être juridiquement cessée.
+
+L’entreprise est considérée juridiquement active :
+
+* lorsqu’elle a été inscrite sans activité à sa demande (création au répertoire mais sans avoir encore démarré une activité : activité principale “0000Z”).
+* si elle n’a plus d’établissement en activité (cessation économique : EtatEco = 3).
+* suite au décès de l’exploitant ou à une dissolution.
+
+Valeurs : Active, Cessée
 
 <a href='http://www.sirene.fr/static-resources/doc/sirenage_interpretation.pdf?version=2.6.2'>Sources</a>
 
