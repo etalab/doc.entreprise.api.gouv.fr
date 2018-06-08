@@ -1,0 +1,140 @@
+# Bilans Entreprises BdF (Banque de France)
+
+> Format du JSON de retour lorsque la banque de france détient les 3 derniers bilans pour un siren donné :
+
+``` json
+{
+  "monnaie": "kEuros",
+  "bilans": [
+    {
+      "duree_exercice": "12",
+      "valeur_ajoutee_bdf": "7848792",
+      "resultat_exercice": "347126",
+      "capitaux_propres_et_assimiles": "5928663",
+      "total_provisions_pour_risques_et_charges": "1957919",
+      "dettes1_emprunts_obligataires_et_convertibles": "0",
+      "dettes2_autres_emprunts_obligataires": "6552306",
+      "total_dettes_stables": "6552306",
+      "emprunts_et_dettes_financieres_divers": "430634",
+      "groupes_et_associes": "0",
+      "besoin_en_fonds_de_roulement": "-721507",
+      "disponibilites": "1983051",
+      "total_passif": "18478051",
+      "evolution_valeur_ajoutee_bdf": "",
+      "evolution_resultat_exercice": "",
+      "evolution_capitaux_propres_et_assimiles": "",
+      "evolution_total_provisions_pour_risques_et_charges": "",
+      "evolution_dettes1_emprunts_obligataires_et_convertibles": "",
+      "evolution_dettes2_autres_emprunts_obligataires": "",
+      "evolution_emprunts_et_dettes_financieres_divers": "",
+      "evolution_groupes_et_associes": "",
+      "evolution_besoin_en_fonds_de_roulement": "",
+      "evolution_disponibilites": "",
+      "evolution_total_passif": "",
+      "chiffre_affaires_ht": "12030700",
+      "capacite_autofinancement": "891914",
+      "date_arret_exercice": "201512",
+      "dettes3_emprunts_et_dettes_aupres_des_etablissements_de_credit": "0",
+      "dettes4_maturite_a_un_an_au_plus": "0",
+      "autres_fonds_propres": "0",
+      "capital_social_inclus_dans_capitaux_propres_et_assimiles": "3800000",
+      "excedent_brut_exploitation": "-1876863",
+      "evolution_chiffre_affaires_ht": "",
+      "evolution_capacite_autofinancement": "",
+      "evolution_dettes3_emprunts_et_dettes_aupres_des_etablissements_de_credit": "",
+      "evolution_dettes4_maturite_a_un_an_au_plus": "",
+      "evolution_autres_fonds_propres": "",
+      "evolution_capital_social_inclus_dans_capitaux_propres_et_assimiles": "",
+      "evolution_excedent_brut_exploitation": "",
+      "evolution_fonds_roulement_net_global": "",
+      "evolution_ratio_fonds_roulement_net_global_sur_besoin_en_fonds_de_roulement": "",
+      "evolution_total_dettes_stables": "",
+      "fonds_roulement_net_global": "2464585",
+      "ratio_fonds_roulement_net_global_sur_besoin_en_fonds_de_roulement": "-"
+      }, "bilan 2", "bilan 3"
+  ]
+}
+```
+
+<aside class="success">Disponible depuis juin 2018</aside>
+
+Ce service permet d'interroger la Banque de France sur les 3 derniers bilans qu'elle connaît d'une entreprise. Les données
+Banque de France ne couvrent pas de manière exhaustive tous les siren. Si la BdF ne détient pas d'informations, ou ne connaît pas les
+3 derniers bilans (par exemple seulement 2), une erreur 404 est retournée.
+
+Toutes les nuits le service BdF effectue des opérations de maintenance pouvant affecter la base de données ou une partie de l'applicatif.
+Il nous est dans ce cas renvoyé divers codes d'erreurs que nous regroupons sous le code HTTP 503 (Service Indisponible) auquel est
+adjoint un message spécifique expliquant le souci côté Banque De France quand celui ci est connu avec précision.
+
+Vous pouvez néanmoins faire des appels de nuit (après 22h), mais devrez prendre en compte ces opérations de maintenance.
+
+### Libellés des champs
+
+Si la donnée n'est en aucun cas transformée ou modifiée, certains libellés assez techniques ont été mis sous forme longue.
+
+### Informations supplémentaires sur le contenu
+
+* La valeur ajoutée BdF n'est pas calculée sur le même mode que la valeur ajoutée classique. Attention à ne pas les confondre.
+* Si les 2 champs fonds_roulement_net_global et besoin_en_fonds_de_roulement ne sont pas négatifs, le champ ratio_fonds_roulement_net_global_sur_besoin_en_fonds_de_roulement est calculé comme suit : fonds_roulement_net_global * 100 / besoin_en_fonds_de_roulement
+* Pour un bilan valide ou non, le champ total_dettes_stables est calculé comme suit : dettes1_emprunts_obligataires_et_convertibles + dettes2_autres_emprunts_obligataires + dettes3_emprunts_et_dettes_aupres_des_etablissements_de_credit - dettes4_maturite_a_un_an_au_plus. Dans le cas ou un des termes du calcul ne serait pas renseigné, il est considéré comme ayant une valeur nulle pour le calcul
+
+##### Bilans
+
+* Les bilans retenus sont ceux dont la date d’arrêté est comprise entre MM+1/AAAA – 4 et MM/AAAA où MM/AAAA est la date du jour (mois en cours)
+* Insertion d’un bilan « - » entre bilanN et bilanN-1, si M > dN. Pour un bilan donné « bilanN » (de durée d’exercice « dN »), M est le nombre de mois entre bilanN et son prédecesseur « bilanN-1 ».
+
+
+##### Cas des champs evolutions
+
+* Les calculs d'évolution ne se font que si les bilans ont la même durée d'exercice et se fait de l'année N par rapport à l'année N - 1
+Ainsi, le libellé originel frng est devenu fonds_roulement_net_global. Aucune autre transformation n'est appliquée.
+* Les données évolution sont au format décimal signé à 2 chiffres après la virgule. Ex : "-7,82%"
+* Les champs évolution calculés par la BdF le sont sur le mode suivant : (valeur à date N  - valeur à date N-1) *100 / valeur absolue(valeur à date N-1)
+
+### Correspondance avec les données de liasse fiscale et champs calculés
+
+Certains champs correspondent directement à un champ de liasse fiscale
+
+Chaque référence fiscale correspond à un format numeroImprimeFiscal_champImprime
+
+Libellé                 | Référence fiscle
+---                     | --------
+chiffre_affaires_ht     | 2052_FL
+resultat_exercice       | 2053_HN
+capitaux_propres_et_assimiles | 2051_DL
+capital_social_inclus_dans_capitaux_propres_et_assimiles | 2051_DA
+autres_fonds_propres | 2051_DO
+total_provisions_pour_risques_et_charges | 2051_DR
+dettes1_emprunts_obligataires_et_convertibles | 2051_DS
+dettes2_autres_emprunts_obligataires | 2051_DT
+dettes3_emprunts_et_dettes_aupres_des_etablissements_de_credit | 2051_DU
+dettes4_maturite_a_un_an_au_plus | 2057_VG2 + 2057_VH2
+emprunts_et_dettes_financieres_divers | 2051_DV
+groupes_et_associes | 2057_VI
+total_passif | 2051_EE
+
+Vous pouvez retrouver les formulaires concernés à ces adresses :
+
+* [Formulaire 2051-SD](https://www.impots.gouv.fr/portail/formulaire/2051-sd/bilan-passif-avant-repartition)
+* [Formulaire 2052-SD](https://www.impots.gouv.fr/portail/formulaire/2052-sd/compte-de-resultat-de-lexercice-en-liste)
+* [Formulaire 2053-SD](https://www.impots.gouv.fr/portail/formulaire/2053-sd/compte-de-resultat-de-lexercice-suite)
+* [Formulaire 2057-SD](https://www.impots.gouv.fr/portail/formulaire/2057-sd/etat-des-echeances-des-creances-et-des-dettes-la-cloturede-lexercice)
+
+Certains champs sont calculés, c'est le cas de tous les champs évolution ainsi que de :
+
+* disponibilites
+* fonds_roulement_net_global
+* besoin_en_fonds_de_roulement
+* capacite_autofinancement
+* excedent_brut_exploitation
+* valeur_ajoutee_bdf
+
+### Requête HTTP
+`GET https://entreprise.api.gouv.fr/v2/bilans_entreprise_bdf/:siren`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siren     | obligatoire | Le numéro siren de la société
+<%= partial "includes/params_obligatoires" %>
