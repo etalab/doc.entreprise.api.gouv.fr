@@ -1,4 +1,4 @@
-## La liasse fiscale complète
+## Liasses fiscales déclaration + dictionnaire
 
 > Format du JSON de retour si la liasse fiscale est disponible
 
@@ -78,10 +78,11 @@
 }
 ```
 
-Ce service renvoie la liasse fiscale d'une entreprise et son dictionnaire pour une annéee donnée.
+Ce service renvoie les déclarations de liasses fiscales (liste de formulaires disponible restreinte par décret) d'une entreprise et son dictionnaire pour une année donnée.
 
 <aside class="warning">
-Le service est pour le moment bouchonné avec le SIREN : 301028346
+Le service est pour le moment bouchonné avec le SIREN : 301028346.
+Attention, le complete dans l'URL ne veut pas dire que toutes les liasses soient retournées mais que le dictionnaire et toutes les déclarations soient retournées pour une année donnée. La liste des formulaires finale n'est pas encore connue et soumise à décret.
 </aside>
 
 ### Requête HTTP
