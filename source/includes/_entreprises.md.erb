@@ -172,25 +172,7 @@ Le numéro de TVA intracommunautaire est calculé par API Entreprise selon la [r
 
 Dans le cas où l'établissement siège est à l'étranger la valeur est systématiquement mise à nul. En effet dans ce cas le numéro de TVA est problablement calculé par le pays où se situe l'établissement siège et _non par la France_. La **seule source** fiable dans ce cas est l'entreprise elle-même.
 
-### Règles de reconstruction de l'adresse
-
-Depuis le 21/06/2018 l'INSEE ne fournit plus d'adresse au format RNVP. Nous opérons une reconstruction à partir des champs disponible dans leur nouvelle API.
-
-Il ne s'agit que de concaténation des champs transmit pas l'INSEE de leur API, ça n'est pas un traitement RNVP.
-
-l1: `raison sociale` si nul `civilité` + `prenom 1` + (`nom usage` si nul `nom`)
-
-l2: `raison sociale usuelle 1` + `raison sociale usuelle 2` + `raison sociale usuelle 3`
-
-l3: `complément d'adresse`
-
-l4: `numero voie` + `indice de répétition` + `type de voie` + `libellé voie`
-
-l5: `distribution spéciale`
-
-l6: `code cedex` + `libellé code cedex` si nul `code postal` +  `libellé commune` si nul `libellé commune étranger`
-
-l7: `libellé du pays`
+<%=partial "includes/rnvp" %>
 
 ### Requête HTTP
 `GET https://entreprise.api.gouv.fr/v2/entreprises/:siren`
