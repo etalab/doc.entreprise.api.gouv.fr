@@ -14,3 +14,4 @@ gem 'guard-middleman', require: false
 
 gem 'mina'
 gem 'rake'
+gem 'colorize'
