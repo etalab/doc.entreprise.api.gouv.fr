@@ -28,15 +28,13 @@
 
 Celui porté sur la liasse fiscale qui correspond au chiffre d'affaire comptable.
 
-**Périmètre :**
-
-Nous ne transmettons le chiffre d'affaire que pour les entreprises :
-
-  - Soumises à l'IS. Afin d'être cohérent avec les informations transmises avec l'attestation de régularité fiscale.
-  - **ET** qui sont légalement obligées de transmettre ses comptes annuels aux greffes.
-
-  Cela concerne toutes les SA, SEL, SNC, <a href="#exercices" data-tooltip="Liste non-exhaustive: SARL, EURL, EARL, SA, SAS, SAA, SASU, SCA, SARL, SNC, SEL, SELARL, SELAFA, SELCA, SELAS, ...">etc...</a>,
-  à <a href="#exercices" data-tooltip="Liste non-exhaustives: BIC, BNC, BA, SNC avec un associé personne physique ayant opté à l'IS, ...">quelques exceptions près</a>
+<aside class="notice">
+Cet endpoint ne renvoie les chiffres d'affaire que pour les entreprises qui vérifient les conditions suivantes :
+  <ul>
+    <li>L'entreprise est soumise à l'impôt sur les sociétés.</li>
+    <li>L'entreprise à transmis ses comptes annuels aux greffes.</li>
+  </ul>
+</aside>
 
 ### Requête HTTP
 `GET https://entreprise.api.gouv.fr/v2/exercices/:siret`
