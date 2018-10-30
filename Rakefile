@@ -4,8 +4,7 @@
 production1 = 'production1.entreprise.api.gouv.fr'
 production2 = 'production2.entreprise.api.gouv.fr'
 
-domains = [production2]
-#domains = [production1, production2]
+domains = [production1, production2]
 
 task :setup do
   domains.each do |domain|
