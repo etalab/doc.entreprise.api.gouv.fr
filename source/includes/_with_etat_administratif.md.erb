@@ -1,7 +1,0 @@
-### Ajout du champ état administratif
-
-Si vous ajoutez le paramètre de requête `with_etat_administratif=true` l'API vous renverra un champ supplémentaire `etat_administratif` (cf JSON renvoyé).
-
-En effet à compter du 31 juin 2019, les APIs INSEE `etablissement_legacy` et `entreprises_legacy` ne seront plus disponibles. Sans ces APIs il ne sera plus possible de connaître l'état administratif d'un SIREN/SIRET; d'où l'intérêt du nouveau champ.
-
-**À compter du 31 juin 2019 l'API renverra systématiquement le nouveau champ `etat_administratif` indépendament de la valeur du champ `with_etat_administratif` vous avez jusqu'à cette date pour impacter vos services.**
