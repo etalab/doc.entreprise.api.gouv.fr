@@ -1,0 +1,21 @@
+### Règles de reconstruction de l'adresse
+
+Depuis le 21/06/2018 l'INSEE ne fournit plus d'adresse au format RNVP. 
+
+Nous opérons une reconstruction de l'addresse à partir des champs disponibles dans leur nouvelle API comme indiqué ci dessous.
+
+Cette reconstruction n'est en aucun cas un traitement RNVP. Des différences minimes résultant de l'arrêt du RNVP peuvent être constatées.
+
+l1: `raison sociale` si nul `civilité` + `prenom 1` + (`nom usage` si nul `nom`)
+
+l2: `raison sociale usuelle 1` + `raison sociale usuelle 2` + `raison sociale usuelle 3`
+
+l3: `complément d'adresse`
+
+l4: `numero voie` + `indice de répétition` + `type de voie` + `libellé voie`
+
+l5: `distribution spéciale`
+
+l6: `code cedex` + `libellé code cedex` si nul `code postal` +  `libellé commune` si nul `libellé commune étranger`
+
+l7: `libellé du pays`
