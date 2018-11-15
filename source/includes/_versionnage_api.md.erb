@@ -177,3 +177,21 @@ Pour migrer, il faut au préalable avoir tous vos appels en v2. Une fois ceci fa
 - corriger les éventuels appels que vous feriez en http, en mettant https à la place
 
 C'est tout. Vous conservez vos droits et comptes à l'identique
+
+## Fermeture des anciennes APIs INSEE
+
+<%= partial "includes/with_insee_v3" %>
+
+## Migration obligatoire espace client et token
+
+Vous devrez au 1er avril 2019 être obligatoirement inscrit sur notre espace client pour bénéficier des services d’API Entreprise. L'inscription se fait comme suit :
+
+- [création d'un compte sur démarches simplifiées](https://demarches-simplifiees.fr/users/sign_in)
+- demande d'espace client à cette adresse [https://signup.entreprise.api.gouv.fr](https://signup.entreprise.api.gouv.fr). Ce formulaire est conforme au RGPD.
+- une fois votre demande acceptée vous receverez un email de confirmation. Il contient les [CGU](https://entreprise.api.gouv.fr/cgu/) et un lien vous invitant à choisir votre mot de passe
+
+Une fois inscrit :
+
+- vos nouveaux tokens seront disponibles sur l'espace client
+- vous pourrez avoir plusieurs tokens en parallèle. Celà permet une séparation fine des usages
+- consulter les statistiques et traces de vos derniers appels
