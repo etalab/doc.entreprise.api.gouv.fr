@@ -1,0 +1,15 @@
+# Renseigner votre jeton
+
+Afin d'obtenir une réponse valide auprès du service API Entreprise vous devez renseigner votre jeton d'accès. Deux possibilités s'offrent à vous : dans un paramètre d'URL ou dans un header de requête.
+
+### Paramètre d'URL
+
+Lors d'un appel à API Entreprise vous pouvez fournir votre token dans l'URL de la requête à l'aide du paramètre `token`. Par exemple :
+
+`https://entreprise.api.gouv.fr/v2/entreprises/418166096?token=votre_jeton&context=...`
+
+Bien que la transmission du token dans l'URL soit pratique pour une utilisation depuis un navigateur, il est recommandé de transmettre votre jeton en en-tête de vos requêtes.
+
+### En-tête de requête
+
+Depuis le 11 juin 2018, API Entreprise fourni des jetons au format JWT, sensiblement plus long, et depuis lors il est possible de communiquer votre jeton d'accès dans l'en-tête `Authorization` de vos requêtes en respect de la [convention](https://tools.ietf.org/html/rfc6750#section-2.1) d'utilisation des jetons de type 'Bearer' : `Authorization : Bearer <votre_jeton>`.

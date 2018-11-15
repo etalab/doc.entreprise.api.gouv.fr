@@ -24,14 +24,17 @@
 }
 ```
 
-Le json renvoyé contient la clé exercices. Cette clé contient un tableau
-contenant 1 à 3 exercices. La structure des données est la même que dans
-l’exemple.
+**Définition du chiffre d'affaire :**
 
-Ce sont les trois derniers exercices, pas forcement les exercices des trois
-dernières années. Il peut y avoir plusieurs exercices en une année.
+Celui porté sur la liasse fiscale qui correspond au chiffre d'affaire comptable.
 
-Ici aussi nous renvoyons aussi la date au format timestamp UNIX
+<aside class="notice">
+Cet endpoint ne renvoie les chiffres d'affaire que pour les entreprises qui vérifient les conditions suivantes :
+  <ul>
+    <li>L'entreprise est soumise à l'impôt sur les sociétés.</li>
+    <li>L'entreprise à transmis ses comptes annuels aux greffes.</li>
+  </ul>
+</aside>
 
 ### Requête HTTP
 `GET https://entreprise.api.gouv.fr/v2/exercices/:siret`
@@ -42,3 +45,12 @@ Nom       | Présence    | Description
 token     | obligatoire | Votre jeton d'authentification
 siret     | obligatoire | Siret de l'entreprise
 <%= partial "includes/params_obligatoires" %>
+
+Le json renvoyé contient la clé exercices. Cette clé contient un tableau
+contenant 1 à 3 exercices. La structure des données est la même que dans
+l’exemple.
+
+Ce sont les trois derniers exercices, pas forcement les exercices des trois
+dernières années. Il peut y avoir plusieurs exercices en une année.
+
+Ici aussi nous renvoyons aussi la date au format timestamp UNIX
