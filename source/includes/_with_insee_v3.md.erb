@@ -1,7 +1,27 @@
-Le service actuel sur lequel nous basons notre API sera coupé en juin 2019. Pour vous préparer à ce changement vous pouvez dès à présent utiliser le nouveau service de l'INSEE en ajoutant le paramètre de requête `with_insee_v3=true`. Ainsi l'API vous renverra les données issues de l'API v3 et non plus de l'API v2 de l'INSEE.
+Les APIs INSEE (appelées sirene_v2 par l'INSEE) qui alimentent notre API seront fermées en juin 2019. L'INSEE nous à d'ores et déjà mis à disposition la nouvelle version (appelée sirene_v3). Les versions n'étant pas strictement identiques, il y a des impacts à anticiper. Vous pouvez :
 
-**À compter du 13 mai 2019 l'API renverra systématiquement les données issues de la nouvelle API de l'INSEE, indépendament de la valeur ou la présence du champ `with_insee_v3`, vous avez jusqu'à cette date pour impacter vos services**
+- utiliser les nouvelles APIs de l'INSEE directement
+- continuer à utiliser API Entreprise (voir détail ci dessous)
 
-Un seul champ a été ajouté à l'API actuelle ; le champ `etat_adminisratif` (cf JSON renvoyé).
+### Basculer chez l'INSEE
 
-En effet à compter du 31 juin 2019, les APIs INSEE `etablissement_legacy` et `entreprises_legacy` seront elles aussi coupées. Sans ces APIs il ne sera plus possible de connaître l'état administratif d'un SIREN/SIRET; d'où l'intérêt du nouveau champ.
+Cette solution ajoute de la complexité et nécessitera des travaux de votre part pour intégrer ces nouvelles API. Les APIs INSEE ne comportent pas les informations de mandataires sociaux mais vous pourrez interroger des données d'historique. [https://api.insee.fr/catalogue/](https://api.insee.fr/catalogue/)
+
+### Continuer chez API Entreprise
+
+Les endpoints `/v2/etablissements_legacy`, `/v2/entreprises_legacy` ne seront plus maintenus.
+
+Les endpoints `/v2/entreprises` et `/v2/etablissements` seront reconstruits à partir de sirene_v3 avec une période de transition.
+
+Les endpoints `/v2/etablissements/:siret/predecesseur` et `/v2/etablissements/:siret/successeur` seront coupés en attente de leur remise à disposition par l'INSEE normalement à la fin de l'année.
+
+En ce qui concerne `/v2/entreprises` et `/v2/etablissements` nous mettons à votre disposition en parallèle :
+
+* la version actuelle s'appuyant sur les API de l'INSEE sirene_v2 qui ferment en juin 2019
+* une version reconstruite à partir des API de l'INSEE nouvelle version sirene_v3 qui prennent le relai
+
+Jusqu'au 12 mai 2019, les deux version cohabitent. Par défaut nous servons les données comme d'habitude en nous appuyant sur sirene_v2. Vous pouvez dès à présent utiliser nos API basées les API sirene_v3 de l'INSEE en ajoutant le paramètre de requête `with_insee_v3=true`.
+
+**À compter du 13 mai 2019 l'API renverra systématiquement les données issues l'API sirene_v3 de l'INSEE, indépendament de la valeur ou la présence du champ `with_insee_v3`, vous avez jusqu'à cette date pour impacter vos services**
+
+Dans la nouvelle mouture, un champ a été ajouté à l'API actuelle ; le champ `etat_adminisratif` (cf JSON renvoyé).
