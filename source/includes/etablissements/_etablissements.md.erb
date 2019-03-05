@@ -50,8 +50,8 @@
       "cedex": null
     },
     "etat_administratif": {
-      "value": "F",
-      "date_fermeture": 1315173600
+      "value": "F", # A (actif) ou F (fermé)
+      "date_fermeture": 1315173600 # null quand actif (A), un timestamp (un entier) quand fermé (F)
     }
   },
   "gateway_error": false
@@ -86,21 +86,32 @@ Le JSON de retour est composé de deux clés :
 * `etablissement` contient les informations de l'établissement
 * `gateway_error` n'est plus utilisé et n'est plus renvoyé
 
-`etat_administratif_etablissement` est une donnée de l’établissement. Elle qualifie l’établissement à un moment donné et permet de distinguer les établissements qui exercent une activité de ceux qui n’en exercent pas. Un établissement au répertoire SIRENE :
-
-* est actif tant qu’il n’a pas déclaré sa fermeture. La date de création associée est la date de création de l’identifiant SIRET.
-* est fermé lors de la déclaration de cessation d’activité à cette adresse. Sont notamment considérés comme actifs les établissements sièges d’une entreprise sans activité.
-
-Valeurs : Actif, Fermé
-
 <a href='http://www.sirene.fr/static-resources/doc/sirenage_interpretation.pdf?version=2.6.2'>Source</a>
 
 La liste exhaustive de tous les champs disponibles pour `etablissement` est disponible dans l'exemple ci-contre.
 
 Les informations d’adresse sont issues des adresses géographiques et normalisées. Nous ne prenons pas en compte l’adresse déclarée. La géolocalisation de l’entreprise peut être faite grâce au service de géocodage suivant : <a href='http://adresse.data.gouv.fr'>http://adresse.data.gouv.fr</a>
 
+### L'État administratif
+
+> Valeurs possibles de l'état administratif pour un établissement
+
+```json
+"etat_administratif": {
+  "value": "F", # A (actif) ou F (fermé)
+  "date_fermeture": 1315173600 # null quand actif (A), un timestamp (un entier) quand fermé (F)
+}
+```
+
+`etat_administratif_etablissement` est une donnée de l’établissement. Elle qualifie l’établissement à un moment donné et permet de distinguer les établissements qui exercent une activité de ceux qui n’en exercent pas. Un établissement au répertoire SIRENE :
+
+* est actif tant qu’il n’a pas déclaré sa fermeture. La date de création associée est la date de création de l’identifiant SIRET.
+* est fermé lors de la déclaration de cessation d’activité à cette adresse. Sont notamment considérés comme actifs les établissements sièges d’une entreprise sans activité.
+
+La liste exhaustive de toutes les valeurs possibles l'état administratif de l'établissement est disponible dans l'exemple ci-contre.
+
 <%= partial "includes/rnvp" %>
-  
+
 <aside class="warning">
   Attention, des cas particuliers concernant les numéros SIRET existent :
 
