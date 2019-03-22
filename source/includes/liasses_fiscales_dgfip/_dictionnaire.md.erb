@@ -36,14 +36,13 @@ Ce service renvoie le dictionnaire des liasses fiscales pour une année donnée.
 
 ### Requête HTTP
 
-`GET https://entreprise.api.gouv.fr/v2/liasses_fiscales_dgfip/:annee/dictionnaire/:siren`
+`GET https://entreprise.api.gouv.fr/v2/liasses_fiscales_dgfip/:annee/dictionnaire`
 
 ### Paramètre de la requête
 
 Nom     | Présence    | Description
 ---     | --------    | -----------
 token   | obligatoire | Votre jeton d'authentification
-siren   | obligatoire | Siren de l'entreprise
 annee   | obligatoire | Année de la liasse demandée
 user_id | obligatoire | Le `user_id` est l’identifiant de l’utilisateur physique qui a fait l’appel. Par exemple sur une place de marché utilisant MPS ça sera un identifiant de l’acheteur public qui consulte la pièce. Il servira en cas d’utilisation anormal de l’API pour remonter à la source et vérifier que l’utilisateur avait bien le droit d’accéder à cette donnée. C’est grâce à lui que vous pourrez répondre à la question “Est-ce que l’utilisateur qui a utilisé l’api avec tel `user_id` à telle heure avait bien le droit de le faire”
 email   | optionnel   | Usage interne. L’email de l’utilisateur effectuant la demande enregistré auprès de la DGFIP, optionnel si l’email est enregistré auprès d'API Entreprise.
