@@ -6,6 +6,18 @@
 {
   "entreprise": {
     "denomination" : "Ma Societe",
+    "itip": "100000105873",
+    "setOcfis": {
+      "codeNace": "4669B",
+      "codeObf": "IS",
+      "dateDebut": "1991-04-15T00:00:00+02:00",
+      "dateDebutPourAttestationRegularite": "1991-04-15T00:00:00+02:00",
+      "nbRof": "0",
+      "numOcfi": "100210572749",
+      "ROF": "IS1",
+      "regime": "RSI",
+      "texteExploitation": "ACHAT VTE MACHINES OUTILS"
+      },
     "siren": "XXXXXXXXX"
   },
   "declarations": [
@@ -17,16 +29,10 @@
       "millesime": "201401",
       "numero_imprime": "2050",
       "imprime": {
-        "donnees": [
-          {
-            "code_nref": "300282",
-            "valeur": "157955912"
-          },
-          {
-            "code_nref": "300283",
-            "valeur": "352174931"
-          }
-        ]
+        "donnees": {
+          "code_nref": "300282",
+          "valeur": "157955912"
+        }
       }
     },
     {
@@ -43,8 +49,11 @@
             "valeur": "157955912"
           },
           {
-            "code_nref": "300283",
-            "valeur": "352174931"
+            "code_nref": "306469",
+            "valeurs": {
+              "indiceRepetition": "1",
+              "valeur": "AMENDES"
+            }
           }
         ]
       }
@@ -54,10 +63,6 @@
 ```
 
 Ce service renvoie les déclarations de liasses fiscales (restreintes aux formulaires disponibles) d'une entreprise pour une année donnée.
-
-<aside class="warning">
-Le service est pour le moment bouchonné avec le SIREN : 301028346
-</aside>
 
 ### Requête HTTP
 
