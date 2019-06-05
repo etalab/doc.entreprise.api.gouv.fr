@@ -1,0 +1,37 @@
+# Certificats RGE ADEME
+
+> Format du JSON de retour lorsque les certifications RGE sont disponibles :
+
+```json
+{
+  "raison_sociale": "ACPC",
+  "adresse": {
+    "rue": "49 AVENUE VICTOR HUGO",
+    "code_postal": "92170",
+    "ville": "VANVES"
+  },
+  "qualifications": [
+    {
+       "nom": "Installation de chauffe-eau solaire dans tout type de bâtiment supérieur à 1000 m²",
+       "url_certificat": "https://storage.entreprise.api.gouv.fr/siade/attestation%2D3a858b299ce9f370e6bdc666d0616617-certificat_rge_ademe.pdf",
+       "nom_certificat": "QUALIBAT-RGE"
+    }
+  ],
+  "domaines": ["Chauffage et\/ou eau chaude solaire"]
+}
+```
+
+Cet endpoint permet de récupérer les certifications RGE d'une entreprise auprès de l'Agence de l'environnement et de la maîtrise de l'energie.
+
+Le label RGE (« Reconnu Garant de l'Environnement ») est un signe de qualité délivré à une entreprise qui remplit certains critères lors de la réalisation de travaux d'économie d'énergie dans les logements (isolation des murs ou de la toiture, installation d'un équipement utilisant une énergie renouvelable, etc.). Il s'agit d'un dispositif reconnu par l'Etat.
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/certificats_rge_ademe/:siret`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siret     | obligatoire | Siret de l'entreprise
+<%= partial "includes/params_obligatoires" %>
