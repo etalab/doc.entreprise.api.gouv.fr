@@ -1,0 +1,49 @@
+# Certificats RGE ADEME
+
+> Format du JSON de retour lorsque les certifications RGE sont disponibles :
+
+```json
+{
+  "raison_sociale": "ACPC",
+  "adresse": {
+    "rue": "49 AVENUE VICTOR HUGO",
+    "code_postal": "92170",
+    "ville": "VANVES"
+  },
+  "qualifications": [
+    {
+       "nom": "Installation de chauffe-eau solaire dans tout type de bâtiment supérieur à 1000 m²",
+       "url_certificat": "https://storage.entreprise.api.gouv.fr/siade/attestation%2D3a858b299ce9f370e6bdc666d0616617-certificat_rge_ademe.pdf",
+       "nom_certificat": "QUALIBAT-RGE"
+    }
+  ],
+  "domaines": ["Chauffage et\/ou eau chaude solaire"]
+}
+```
+
+Cet endpoint permet de récupérer les certifications RGE (sous la forme d'un pdf) d'une entreprise auprès de l'Agence de l'environnement et de la maîtrise de l'energie.
+
+Le label RGE (« Reconnu Garant de l'Environnement ») est délivré à une entreprise qui remplit certains critères lors de la réalisation de travaux d'économie d'énergie dans les logements (isolation des murs ou de la toiture, installation d'un équipement utilisant une énergie renouvelable, etc.). Il s'agit d'un dispositif reconnu par l'Etat.
+Il existe plusieurs types de cerfication :
+
+* Qualit'EnR pour les installations d’équipements valorisant les énergies renouvelables.
+* Qualifelec pour les les travaux électriques en matière d’efficacité énergétique et/ou d’installation des énergies renouvelables.
+* RGE ecoartisant pour des prestation de conseil dans le domaine de la performance énergétique, par le biais d’une évaluation thermique ou des travaux d’efficacité énergétique.
+* Qualibat : pour des travaux liés à la performance énergétique (construction ou rénovation).
+* Céquami délivre des certifications à des professionnels à même de vous proposer des travaux de rénovation lourde dans le cadre d’une rénovation énergétique globale du logement.
+* Certibat délivre des certifications aux professionnels du bâtiment en mesure de proposer et réaliser des offres globales de rénovation énergétique.
+
+<aside class="notice">
+Il peut arriver que certains certificats PDF ne soient pas disponibles. En effet, l'ADEME demande aux organismes listés ci-dessus de mettre à disposition les adresses URL vers les certificats mais tous les développements n'ont pas encore été réalisés. Le message suivant est alors renvoyé dans le champ `url_certificat` : "Une erreur est survenue lors de la récupération du fichier PDF.". Cependant, les fichiers sont disponibles pour 95% des entreprises en base chez l'ADEME.
+</aside>
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/certificats_rge_ademe/:siret`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siret     | obligatoire | Siret de l'entreprise
+<%= partial "includes/params_obligatoires" %>
