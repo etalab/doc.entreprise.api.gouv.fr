@@ -1,6 +1,6 @@
-# SIREN et SIRET non-diffusables
+# SIREN et SIRET non diffusés à tous
 
-> Exemple de message d'erreur renvoyé avec un SIREN ou SIRET non-diffusable :
+> Exemple de message d'erreur renvoyé avec un SIREN ou SIRET non diffusés à tous :
 
 ```json
 {
@@ -14,15 +14,15 @@
 Certains appels pourront renvoyer un code HTTP 403 signifiant signifiant que l'accès à la resource (entreprise ou établissement) est interdit. Cela peut signifier deux choses :
 
 - le cas général signifie que votre jeton ne vous permet pas d'accéder à l'API en question
-- cependant pour les APIs `/entreprises` et `/etablissements` certaines entités ont demandés à être non-diffusables, dans ce cas nous renvoyons un code 403 car l'accès à la ressource est en effet interdite par l'INSEE.
+- cependant pour les APIs `/entreprises` et `/etablissements` les données de ces entités et établissements ne sont pas diffusées à tous par l'INSEE du fait de leur opposition à ce que leurs données soient utilisées à des fin de prospection, notamment commerciale ; dans ce cas nous renvoyons un code 403 car l'accès à la ressource est en effet interdite par l'INSEE.
 
-### Comment interpréter "non-diffusable"
+### Comment interpréter "non diffusés à tous"
 
-Un numéro de SIRET ou SIREN non-diffusable signifie que l'entreprise ou l'établissement a bel et bien existé à un moment, mais **ne signifie en aucun cas qu'il existe encore aujourd'hui !**
+Un numéro de SIRET ou SIREN non diffusé à tous signifie que l'entreprise ou l'établissement a bel et bien existé à un moment, mais **ne signifie en aucun cas qu'il existe encore aujourd'hui !**
 
 ### Quelles entreprises sont concernées ?
 
-Selon les articles [A123-95](https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=A50D4E549BAC95B63FFE10B24F86D7A5.tplgfr21s_1?idArticle=LEGIARTI000020165032&cidTexte=LEGITEXT000005634379&dateTexte=20100702) et [A123-96](https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=A50D4E549BAC95B63FFE10B24F86D7A5.tplgfr21s_1?idArticle=LEGIARTI000020165030&cidTexte=LEGITEXT000005634379&dateTexte=20100702) peuvent être non-diffusables :
+Selon les articles [A123-95](https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=A50D4E549BAC95B63FFE10B24F86D7A5.tplgfr21s_1?idArticle=LEGIARTI000020165032&cidTexte=LEGITEXT000005634379&dateTexte=20100702) et [A123-96](https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=A50D4E549BAC95B63FFE10B24F86D7A5.tplgfr21s_1?idArticle=LEGIARTI000020165030&cidTexte=LEGITEXT000005634379&dateTexte=20100702) du code du commerce, peuvent être non diffusés à tous :
 
 - certains établissements du ministère de la défense
 - certaines personnes morales pour des raisons de confidentialités
