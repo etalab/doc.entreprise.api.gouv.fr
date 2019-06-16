@@ -11,10 +11,10 @@
 }
 ```
 
-Certains appels pourront renvoyer un code HTTP 403 signifiant signifiant que l'accès à la resource (entreprise ou établissement) est interdit. Cela peut signifier deux choses :
+Certains appels peuvent renvoyer un code HTTP 403 signifiant que l'accès à la ressource (entreprise ou établissement) est interdit. Cela peut signifier deux choses :
 
 - le cas général signifie que votre jeton ne vous permet pas d'accéder à l'API en question
-- cependant pour les APIs `/entreprises` et `/etablissements` les données de ces entités et établissements ne sont pas diffusées à tous par l'INSEE du fait de leur opposition à ce que leurs données soient utilisées à des fin de prospection, notamment commerciale ; dans ce cas nous renvoyons un code 403 car l'accès à la ressource est en effet interdite par l'INSEE.
+- cependant pour les APIs `/entreprises` et `/etablissements` les données de ces entités ne sont pas diffusées à tous par l'INSEE du fait de leur opposition à ce que leurs données soient utilisées à des fin de prospection, notamment commerciale ; dans ce cas nous renvoyons un code 403 car l'accès à la ressource est en effet interdite par l'INSEE.
 
 ### Comment interpréter "non diffusés à tous"
 
