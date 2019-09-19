@@ -1,17 +1,17 @@
 # Actes et Bilans INPI
 
-<aside class="success">Disponible depuis août 2019</aside>
+<aside class="success">Disponible depuis septembre 2019</aside>
 
 Ces deux services permettent d'interroger l'Institut National de la Propriété Industrielle (INPI) et d'obtenir la liste des actes et bilans d'une entreprise donnée.
 
-Les actes et bilans sont dans un fichier zip à télécharger: `url_documents`.
+Les actes et bilans sont dans un fichier au format zip à télécharger: `url_documents`.
 Chaque document PDF est accompagné d'un jeu de méta-données au format XML ;
 les méta-données sont dans un fichier portant le même nom que le PDF associé.
 
-Chaque élément de la liste de documents possède un `id_fichier` qui vous permettra de retrouver le PDF dans le zip.
-Le zip contient un fichier `Response.json` qui vous permettra de faire le lien entre l'`id_fichier` et le nom du PDF.
+Chaque élément de la liste de documents possède un `id_fichier` qui vous permet de retrouver le PDF dans l'archive.
+L'archive contient un fichier `Response.json` qui permet de faire le lien entre l'`id_fichier` et le nom du PDF.
 
-Afin de parcourir plus facilement le fichier `Response.json` nous vous recommandons l'utilisation d'un [formateur JSON](https://jsonformatter.org/json-pretty-print).
+Afin de parcourir plus facilement le fichier `Response.json` nous recommandons l'utilisation d'un [formateur JSON](https://jsonformatter.org/json-pretty-print).
 
 <%= partial "includes/inpi/actes" %>
 <%= partial "includes/inpi/bilans" %>
