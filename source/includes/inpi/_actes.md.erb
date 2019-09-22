@@ -1,0 +1,40 @@
+## Actes (PDF) INPI
+
+> Format du JSON de retour lorsque des actes sont disponibles
+
+```json
+{
+  "url_documents": "https://storage.entreprise.api.gouv.fr/siade_dev/1565606929-1a01ac932854e5632c7534ff4c18e18ec2845ec0-all_documents.zip",
+  "actes": [
+    {
+      "id_fichier": 24924080,
+      "siren": "788242667",
+      "denomination_sociale": null,
+      "code_greffe": 7402,
+      "date_depot": "20170925",
+      "nature_archive": "A"
+    },
+    {
+      "id_fichier": 213962416,
+      "siren": "788242667",
+      "denomination_sociale": null,
+      "code_greffe": 7454,
+      "date_depot": "19980414",
+      "nature_archive": "A"
+    }
+  ]
+}
+```
+
+Exemple de document renvoyé: [Acte - procès verbal](files/ACTE_proces_verbal_octo.pdf)
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/actes_inpi/:siren`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siren     | obligatoire | Siren de l'entreprise
+<%= partial "includes/params_obligatoires" %>

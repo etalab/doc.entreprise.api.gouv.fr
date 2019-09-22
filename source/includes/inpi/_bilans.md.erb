@@ -1,0 +1,48 @@
+## Bilans (PDF) INPI
+
+> Format du JSON de retour lorsque des bilans sont disponibles
+
+```json
+{
+  "url_documents": "https://storage.entreprise.api.gouv.fr/siade_dev/1565607027-91ac7ac7e80b866055d23b9203e41fa0de487bc0-all_documents.zip",
+  "bilans": [
+    {
+      "id_fichier": 11439992,
+      "siren": "788242667",
+      "denomination_sociale": null,
+      "code_greffe": 7402,
+      "date_depot": "20180116",
+      "nature_archive": "B-S",
+      "confidentiel": 0,
+      "date_cloture": "2016-12-31T00:00:00.000Z",
+      "numero_gestion": "1973B00101"
+    },
+    {
+      "id_fichier": 12553924,
+      "siren": "788242667",
+      "denomination_sociale": null,
+      "code_greffe": 7402,
+      "date_depot": "20180921",
+      "nature_archive": "B-S",
+      "confidentiel": 0,
+      "date_cloture": "2017-12-31T00:00:00.000Z",
+      "numero_gestion": "1973B00101"
+    }
+  ]
+}
+```
+
+Un _bilan_ et synonyme de _compte annuel_.
+
+Exemple de document renvoyé: [Bilan (compte annuel)](files/BILAN_octo_rapport_commissaire_bilans.pdf)
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/bilans_inpi/:siren`
+
+### Paramètres de requête
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siren     | obligatoire | Siren de l'entreprise
+<%= partial "includes/params_obligatoires" %>
