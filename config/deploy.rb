@@ -44,5 +44,4 @@ task :deploy do
     command %{ bundle exec middleman build --clean }
     invoke :'deploy:cleanup'
   end
-
 end
