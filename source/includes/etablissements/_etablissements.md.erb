@@ -78,7 +78,7 @@ Nom       | Présence    | Description
 ---       | --------    | -----------
 token     | obligatoire | Votre jeton d'authentification
 siret     | obligatoire | Siret de l'entreprise
-with_etat_administratif | facultatif | true ou false
+with_non_diffusables | facultatif | true ou false
 <%= partial "includes/params_obligatoires" %>
 
 Le JSON de retour est composé de deux clés :
@@ -93,6 +93,22 @@ La liste exhaustive de tous les champs disponibles pour `etablissement` est disp
 Les informations d’adresse sont issues des adresses géographiques et normalisées. Nous ne prenons pas en compte l’adresse déclarée. La géolocalisation de l’entreprise peut être faite grâce au service de géocodage suivant : <a href='http://adresse.data.gouv.fr'>http://adresse.data.gouv.fr</a>
 
 Cette API est susceptible de renvoyer un code HTTP 403 même si votre token vous permet d'y accéder, référrez-vous à la section sur les [SIREN et SIRET non diffusé à tous](#siren-et-siret-non-diffus-s-tous) pour plus de détails.
+
+### Entreprises non-diffusées
+
+Vous pouvez accéder aux entreprises non diffusées en ajoutant le paramètre
+`with_non_diffusables=true`. Le champ `diffusable_commercialement` indique
+si l'entreprise est diffusée ou non (il était auparavant systématiquement à
+`false`)
+
+<aside class="notice">Cette option est disponible depuis le 1er décembre 2019</aside>
+
+<aside class="warning">
+  Les entreprises non diffusées ne doivent en aucun cas être accessibles à un
+  agent non autorisé à y accéder. Les moteurs de recherche et le
+  pré-remplissable de formulaires ne doivent pas afficher d'une quelconque
+  manière les informations relatives à une entreprise non-diffusée.
+</aside>
 
 ### L'État administratif
 
