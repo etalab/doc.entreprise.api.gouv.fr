@@ -99,16 +99,9 @@ Cette API est susceptible de renvoyer un code HTTP 403 même si votre token vous
 Vous pouvez accéder aux entreprises non diffusées en ajoutant le paramètre
 `with_non_diffusables=true`. Le champ `diffusable_commercialement` indique
 si l'entreprise est diffusée ou non (il était auparavant systématiquement à
-`false`)
+`false`).
 
-<aside class="notice">Cette option est disponible depuis le 1er décembre 2019</aside>
-
-<aside class="warning">
-  Les entreprises non diffusées ne doivent en aucun cas être accessibles à un
-  agent non autorisé à y accéder. Les moteurs de recherche et le
-  pré-remplissable de formulaires ne doivent pas afficher d'une quelconque
-  manière les informations relatives à une entreprise non-diffusée.
-</aside>
+<%= partial "includes/non_diffuses" %>
 
 ### L'État administratif
 
