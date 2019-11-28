@@ -8,9 +8,10 @@ Error Code | Meaning
 206        | Réponse incomplete - Un des fournisseurs de données a renvoyé une erreur, la réponse est incomplète (les valeurs concernées contiennent le message par défaut: `Donnée indisponible`)
 400        | Mauvaise requête -- Le format de la requête est incorrecte
 401        | Non autorisé -- Token invalide ou manquant
-403        | Interdit -- Votre jeton ne vous donne pas accès à cette ressource (cas particulier des entreprises [non diffusés](#entreprises-non-diffus-es))
+403        | Interdit -- Votre jeton ne vous donne pas accès à cette ressource
 404        | Non trouvé -- La ressource (l'entreprise, le certificat, ...) demandée n'a pas été trouvée
 422        | Entité non traitable -- Le format de la donnée passée en paramètre n'est pas accepté
+451        | Indisponible pour raisons légales -  quand une entreprise est [non diffusée](#entreprises-non-diffus-es) par l'INSEE
 500        | Erreur interne -- Une erreur interne est survenue
 502        | Passerelle incorrecte -- Mauvaise réponse envoyée par le fournisseur de données
 503        | Service non disponible -- Service temporairement indisponible ou en maintenance

@@ -78,7 +78,7 @@ Nom       | Présence    | Description
 ---       | --------    | -----------
 token     | obligatoire | Votre jeton d'authentification
 siret     | obligatoire | Siret de l'entreprise
-with_non_diffusables | facultatif | true ou false
+non_diffusables | facultatif | se référer au [non-diffusés](#entreprises-non-diffus-es) valeur: `true` ou `false`
 <%= partial "includes/params_obligatoires" %>
 
 Le JSON de retour est composé de deux clés :
@@ -97,7 +97,7 @@ Cette API est susceptible de renvoyer un code HTTP 403 même si votre token vous
 ### Entreprises non-diffusées
 
 Vous pouvez accéder aux entreprises non diffusées en ajoutant le paramètre
-`with_non_diffusables=true`. Le champ `diffusable_commercialement` indique
+`non_diffusables=true`. Le champ `diffusable_commercialement` indique
 si l'entreprise est diffusée ou non (il était auparavant systématiquement à
 `false`).
 

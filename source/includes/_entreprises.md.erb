@@ -56,7 +56,7 @@
       "value": "C", # A (actif) ou C (cessé)
       "date_cessation": 1315173600 # null quand actif (A), un timestamp (un entier) quand cessé (C )
     },
-    "diffusable_commercialement": true # champ uniquement présent avec l'option "with_non_diffusables=true"
+    "diffusable_commercialement": true # champ uniquement présent avec l'option "non_diffusables=true"
   },
   "etablissement_siege": {
     "siege_social": true,
@@ -130,7 +130,7 @@ Nom       | Présence    | Description
 ---       | --------    | -----------
 token     | obligatoire | Votre jeton d'authentification
 siren     | obligatoire | Siren de l'entreprise
-with_non_diffusables | facultatif | true ou false
+non_diffusables | facultatif | se référer au [non-diffusés](#entreprises-non-diffus-es) valeur: `true` ou `false`
 <%= partial "includes/params_obligatoires" %>
 
 Cet endpoint permet de récupérer des informations concernant une entreprise.
@@ -170,7 +170,7 @@ Voici néanmoins quelques précisions sur certaines clés :
 ### Entreprises non-diffusées
 
 Vous pouvez accéder aux entreprises non diffusées en ajoutant le paramètre
-`with_non_diffusables=true`. Un champ supplémentaire apparaît alors
+`non_diffusables=true`. Un champ supplémentaire apparaît alors
 `diffusable_commercialement` indiquant si l'entreprise est diffusée ou non.
 
 <%= partial "includes/non_diffuses" %>
