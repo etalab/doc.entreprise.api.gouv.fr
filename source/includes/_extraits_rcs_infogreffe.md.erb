@@ -14,6 +14,12 @@
       "date_timestamp": 951260400,
       "numero": "12197",
       "libelle": " LA SOCIETE NE CONSERVE AUCUNE ACTIVITE A SON ANCIEN SIEGE "
+    },
+    {
+      "date": "2017-07-19",
+      "date_timestamp": 951260400,
+      "numero": "14127",
+      "libelle": "AUGMENTATION DE CAPITAL"
     }
   ]
 }
@@ -36,7 +42,18 @@
 }
 ```
 
-Cet endpoint permet de récupérer auprès d'Infogreffe un extrait des données présentes dans le Registre du commerce et des sociétés pour un numéro de siren donné.
+Cet endpoint permet de récupérer auprès d'Infogreffe un extrait des données présentes
+dans le Registre du commerce et des sociétés pour un numéro de siren donné. La liste
+exhaustives de variables renvoyées est disponbile ci-contre.
+
+Les observations continnenent **tous** les commentaires laissés par les greffiers, ils peuvent
+**entre autres** concerner :
+
+- les changements de capital
+- les transferts de siège
+- les fusions
+- les redressements
+- les liquidations judiciaires (si publiques)
 
 ### Requête HTTP
 `GET https://entreprise.api.gouv.fr/v2/extraits_rcs_infogreffe/:siren`
