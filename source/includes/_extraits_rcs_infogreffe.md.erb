@@ -43,17 +43,17 @@
 ```
 
 Cet endpoint permet de récupérer auprès d'Infogreffe un extrait des données présentes
-dans le Registre du commerce et des sociétés pour un numéro de siren donné. La liste
-exhaustives de variables renvoyées est disponbile ci-contre.
-
-Les observations continnenent **tous** les commentaires laissés par les greffiers, ils peuvent
-**entre autres** concerner :
-
-- les changements de capital
-- les transferts de siège
-- les fusions
-- les redressements
-- les liquidations judiciaires (si publiques)
+dans le Registre du commerce et des sociétés pour un numéro de siren donné. 
+*Il ne s'agit donc pas de la totalité des données présentes sur le Kbis mais d'une partie succincte* : 
+- le SIREN ; 
+- la date d'immatriculation de l'entreprise : cette date n'est pas la même que celle délivrée par l'INSEE. 
+Elle ne correspond pas non plus à la date du début d'activité. 
+C'est la date où la société est immatriculée au Registre du Commerce et des Sociétés (RCS), c'est à compter de cette date 
+que les sociétés jouissent de la personnalité morale.
+- la date de l'extrait ; 
+- les observations : il s'agit de **tous** les commentaires laissés par les greffiers, ils peuvent
+**entre autres** concerner les changements de capital, les transferts de siège, les fusions, les redressements
+et liquidations judiciaires (si publiques).
 
 ### Requête HTTP
 `GET https://entreprise.api.gouv.fr/v2/extraits_rcs_infogreffe/:siren`
