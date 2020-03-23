@@ -169,6 +169,8 @@ Voici néanmoins quelques précisions sur certaines clés :
 
 ### Entreprises non-diffusées
 
+<aside class="notice">Cette option est disponible depuis le 1er décembre 2019</aside>
+
 Vous pouvez accéder aux entreprises non diffusées en ajoutant le paramètre
 `non_diffusables=true`. Un champ supplémentaire apparaît alors
 `diffusable_commercialement` indiquant si l'entreprise est diffusée ou non.
@@ -203,36 +205,6 @@ sont :
 
 Tous les autres champs retournés sont vides.
 
-### L'État administratif
-
-> Valeurs possibles de l'état administratif pour une entreprise
-
-```json
-"etat_administratif": {
-  "value": "C", # A (actif) ou C (cessé)
-  "date_cessation": 1315173600 # null quand actif (A), un timestamp (un entier) quand cessé (C )
-}
-```
-
-Le champ `etat_administratif` est l’état juridique de l’entreprise (source
-INSEE) : Cette variable est une donnée de l’entreprise. Elle qualifie l’entreprise
-à un moment donné. Une entreprise au répertoire SIRENE :
-
-* peut être juridiquement active tant que sa personnalité morale existe, c’est à dire tant qu’elle n’a pas déclaré sa cessation.
-* peut être juridiquement cessée.
-
-L’entreprise est considérée juridiquement active :
-
-* lorsqu’elle a été inscrite sans activité à sa demande (création au répertoire mais sans avoir encore démarré une activité : activité principale “0000Z”).
-* si elle n’a plus d’établissement en activité (cessation économique : EtatEco = 3).
-* suite au décès de l’exploitant ou à une dissolution.
-
-La liste exhaustive de toutes les valeurs possibles l'état administratif de l'entreprise est disponible dans l'exemple ci-contre.
-
+<%=partial "includes/etat_administratif_entreprise" %>
 <%=partial "includes/rnvp" %>
-
-### Numéro de TVA
-
-Le numéro de TVA intracommunautaire est calculé par API Entreprise selon la [règle officielle](https://fr.wikipedia.org/wiki/Code_Insee#Num%C3%A9ro_de_TVA_intracommunautaire). **Cette donnée est théorique**
-
-Dans le cas où l'établissement siège est à l'étranger la valeur est systématiquement mise à nul. En effet dans ce cas le numéro de TVA est problablement calculé par le pays où se situe l'établissement siège et _non par la France_. La **seule source** fiable dans ce cas est l'entreprise elle-même.
+<%=partial "includes/numero_tva" %>
