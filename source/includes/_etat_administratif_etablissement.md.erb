@@ -1,0 +1,18 @@
+### L'État administratif
+
+> Valeurs possibles de l'état administratif pour un établissement
+
+```json
+"etat_administratif": {
+  "value": "F", # A (actif) ou F (fermé)
+  "date_fermeture": 1315173600 # null quand actif (A), un timestamp (un entier) quand fermé (F)
+}
+```
+
+`etat_administratif` est une donnée de l’établissement. Elle qualifie l’établissement à un moment donné et permet de distinguer les établissements qui exercent une activité de ceux qui n’en exercent pas. Un établissement au répertoire SIRENE :
+
+* est actif tant qu’il n’a pas déclaré sa fermeture. La date de création associée est la date de création de l’identifiant SIRET.
+* est fermé lors de la déclaration de cessation d’activité à cette adresse. Sont notamment considérés comme actifs les établissements sièges d’une entreprise sans activité.
+
+La liste exhaustive de toutes les valeurs possibles l'état administratif de l'établissement est disponible dans un exemple ci-contre.
+

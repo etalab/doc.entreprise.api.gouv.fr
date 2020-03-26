@@ -96,31 +96,15 @@ Cette API est susceptible de renvoyer un code HTTP 403 même si votre token vous
 
 ### Entreprises non-diffusées
 
+<aside class="notice">Cette option est disponible depuis le 1er décembre 2019</aside>
+
 Vous pouvez accéder aux entreprises non diffusées en ajoutant le paramètre
 `non_diffusables=true`. Le champ `diffusable_commercialement` indique
 si l'entreprise est diffusée ou non (il était auparavant systématiquement à
 `false`).
 
 <%= partial "includes/non_diffuses" %>
-
-### L'État administratif
-
-> Valeurs possibles de l'état administratif pour un établissement
-
-```json
-"etat_administratif": {
-  "value": "F", # A (actif) ou F (fermé)
-  "date_fermeture": 1315173600 # null quand actif (A), un timestamp (un entier) quand fermé (F)
-}
-```
-
-`etat_administratif_etablissement` est une donnée de l’établissement. Elle qualifie l’établissement à un moment donné et permet de distinguer les établissements qui exercent une activité de ceux qui n’en exercent pas. Un établissement au répertoire SIRENE :
-
-* est actif tant qu’il n’a pas déclaré sa fermeture. La date de création associée est la date de création de l’identifiant SIRET.
-* est fermé lors de la déclaration de cessation d’activité à cette adresse. Sont notamment considérés comme actifs les établissements sièges d’une entreprise sans activité.
-
-La liste exhaustive de toutes les valeurs possibles l'état administratif de l'établissement est disponible dans l'exemple ci-contre.
-
+<%= partial "includes/etat_administratif_etablissement" %>
 <%= partial "includes/rnvp" %>
 
 <aside class="warning">

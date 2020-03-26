@@ -1,5 +1,100 @@
 # Etablissements
-<%= partial "includes/etablissements/etablissements" %>
-<%= partial "includes/etablissements/predecesseur" %>
-<%= partial "includes/etablissements/successeur" %>
 
+> Format du JSON renvoyé :
+
+```json
+{
+  "siren": "418166096",
+  "nic": "00051",
+  "siret": "41816609600051",
+  "statut_diffusion": true,
+  "date_creation": "2005-02-17",
+  "tranche_effectif_code": "11",
+  "tranche_effectif_libelle": "10 à 19 salariés",
+  "tranche_effecif_annee_reference": "2017",
+  "activite_principale_rnm_code": "123456",
+  "date_dernier_traitement": "2018-09-29T12:41:44",
+  "siege_social": true,
+  "enseigne_1": null,
+  "enseigne_2": null,
+  "enseigne_3": null,
+  "denomination_usuelle": null,
+  "activite_principale_code": "62.02A",
+  "activite_principale_nomenclature": "NAFRev2",
+  "activite_principale_libelle": "Conseil en systèmes et logiciels informatiques",
+  "caractere_employeur": "O",
+  "etat_administratif": {
+    "value": "A",
+    "date_fermeture": null
+  },
+  "adresse_1": {
+    "complement": "LA PIOLINE",
+    "numero_voie": "10",
+    "indice_repetition": null,
+    "type_voie": "ALL",
+    "libelle_voie": "DES PLATANES LES MILLES",
+    "code_postal": "13290",
+    "commune_code": "13001",
+    "commune_libelle": "AIX-EN-PROVENCE",
+    "commune_etranger_libelle": null,
+    "distribution_speciale": null,
+    "cedex_code": "13546",
+    "cedex_libelle": "AIX EN PROVENCE CEDEX 4",
+    "pays_etranger_code": "",
+    "pays_etranger_libelle": ""
+  },
+  "adresse_2": {
+    "complement": "Le ROC FLEURI",
+    "numero_voie": "1",
+    "indice_repetition": null,
+    "type_voie": "RUE",
+    "libelle_voie": "DE TENAO",
+    "code_postal": null,
+    "commune_code": null,
+    "commune_libelle": null,
+    "commune_etranger_libelle": "MONACO",
+    "distribution_speciale": "BP 345",
+    "cedex_code": null,
+    "cedex_libelle": null,
+    "pays_etranger_code": "99138",
+    "pays_etranger_libelle": "MONACO"
+  }
+}
+```
+
+<aside class="notice">
+Le service INSEE etablissements v3 sera disponible le 15 avril 2020.
+</aside>
+
+### Contenu des champs
+
+La documentation exhaustives des variables peut être trouvée dans la
+[documentation officielle de l'INSEE](https://api.insee.fr/catalogue/site/themes/wso2/subthemes/insee/templates/api/documentation/download.jag?tenant=carbon.super&resourceUrl=/registry/resource/_system/governance/apimgt/applicationdata/provider/insee/Sirene/V3/documentation/files/INSEE%20Documentation%20API%20Sirene%20Variables-V3.9.pdf).
+
+Le champ `commune_code` correspond au code des communes gérées par l'INSEE,
+défini dans le [code officiel géographique (COG)](https://www.insee.fr/fr/information/2028028).
+
+Le champ `pays_etranger_code` est défini dans la [Codification des pays et territoires étrangers](https://www.insee.fr/fr/information/2028273).
+
+<%= partial "includes/etat_administratif_etablissement" %>
+
+### Établissements non-diffusables
+
+Vous pouvez accéder aux entreprises non-diffusables en ajoutant le paramètre
+`non_diffusables=true`. Le champ `statut_diffusion` indique si l'établissement
+est diffusable ou non (`true` diffusable, `false` non-diffusable)
+
+<%= partial "includes/non_diffuses" %>
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v3/etablissements_insee/:siret`
+
+### Paramètre de requête
+
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siret     | obligatoire | Siret de l'entreprise
+non_diffusables | facultatif | se référer au [non-diffusés](#entreprises-non-diffus-es) valeur: `true` ou `false`
+<%= partial "includes/params_obligatoires" %>
