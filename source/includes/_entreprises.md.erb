@@ -7,7 +7,7 @@
   "siren": "414052753",
   "nic_siege": "00024",
   "statut_diffusion": true,
-  "date_creation": "1997-05-24",
+  "date_creation": 1108594800,
   "sigle": "OLF",
   "sexe": null,
   "nom": null,
@@ -35,7 +35,7 @@
   "activite_principale_nomenclature": "NAFRev2",
   "economie_sociale_solidaire": null,
   "caractere_employeur": "O",
-  "date_dernier_traitement": "2019-06-24T13:51:38",
+  "date_dernier_traitement": 1538217704,
   "numero_tva_intracommunautaire": "FR54492009816",
   "etat_administratif": {
     "value": "A",
@@ -46,12 +46,12 @@
     "nic": "00051",
     "siret": "41816609600051",
     "statut_diffusion": true,
-    "date_creation": "2005-02-17",
+    "date_creation": 1108594800,
     "tranche_effectif_code": "11",
     "tranche_effectif_libelle": "10 à 19 salariés",
     "tranche_effecif_annee_reference": "2017",
     "activite_principale_rnm_code": "123456",
-    "date_dernier_traitement": "2018-09-29T12:41:44",
+    "date_dernier_traitement": 1538217704,
     "siege_social": true,
     "enseigne_1": null,
     "enseigne_2": null,
@@ -109,6 +109,8 @@ Le service INSEE etablissements v3 sera disponible le 15 avril 2020.
 
 La documentation exhaustives des variables peut être trouvée dans la
 [documentation officielle de l'INSEE](https://api.insee.fr/catalogue/site/themes/wso2/subthemes/insee/templates/api/documentation/download.jag?tenant=carbon.super&resourceUrl=/registry/resource/_system/governance/apimgt/applicationdata/provider/insee/Sirene/V3/documentation/files/INSEE%20Documentation%20API%20Sirene%20Variables-V3.9.pdf).
+
+Toutes les dates sont au format timestamp UNIX.
 
 <%=partial "includes/etat_administratif_entreprise" %>
 <%=partial "includes/numero_tva" %>
