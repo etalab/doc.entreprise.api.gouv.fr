@@ -13,6 +13,7 @@ Il y a 3 APIs pour obtenir les effectifs d'une entreprise ou d'un établissement
 ```json
 {
   "siren": "418166096",
+  "annee_reference": "2019",
   "effectifs_annuels": 100.5
 }
 ```
@@ -21,8 +22,9 @@ Il y a 3 APIs pour obtenir les effectifs d'une entreprise ou d'un établissement
 
 ### Contenu des champs
 
-L'année de référence est l'année précédente. Le champ `effectifs_annuels`
-peut être un décimal (ie: 12,4 ou 100,5).
+L'année de référence est toujours l'année précédente.
+
+Le champ `effectifs_annuels` peut être un décimal (ie: 12,4 ou 100,5).
 
 ### Requête HTTP
 
@@ -43,6 +45,7 @@ siren     | obligatoire | Siren de l'entreprise
 ```json
 {
   "siren": "418166096",
+  "mois_reference": "2019-02",
   "effectifs_mensuels": 100.5
 }
 ```
@@ -53,6 +56,9 @@ siren     | obligatoire | Siren de l'entreprise
 
 Les effectifs sont mis à jour le 15 de chaque mois, et donc avant cette
 date il n'est possible de demander les effectifs que du mois précédent.
+Si la donnée est indisponible pour le mois demandé l'API renverra un 404
+avec un message d'erreur explicite.
+
 Le champ `effectifs_mensuels` peut être un décimal (ie: 12,4 ou 100,5).
 
 ### Requête HTTP
@@ -64,8 +70,8 @@ Le champ `effectifs_mensuels` peut être un décimal (ie: 12,4 ou 100,5).
 Nom       | Présence    | Description
 ---       | --------    | -----------
 token     | obligatoire | Votre jeton d'authentification
-annee     | obligatoire | L'année de l'effectif recherché
-mois      | obligatoire | Mois de l'effectifs recherché
+annee     | obligatoire | L'année de l'effectif recherché (sur 4 caractères)
+mois      | obligatoire | Mois de l'effectifs recherché (sur 2 caractères)
 siren     | obligatoire | Siren de l'entreprise
 <%= partial "includes/params_obligatoires" %>
 
@@ -76,6 +82,7 @@ siren     | obligatoire | Siren de l'entreprise
 ```json
 {
   "siret": "41816609600026",
+  "mois_reference": "2019-02",
   "effectifs_mensuels": 100.5
 }
 ```
@@ -86,6 +93,9 @@ siren     | obligatoire | Siren de l'entreprise
 
 Les effectifs sont mis à jour le 15 de chaque mois, et donc avant cette
 date il n'est possible de demander les effectifs que du mois précédent.
+Si la donnée est indisponible pour le mois demandé l'API renverra un 404
+avec un message d'erreur explicite.
+
 Le champ `effectifs_mensuels` peut être un décimal (ie: 12,4 ou 100,5).
 
 ### Requête HTTP
@@ -97,7 +107,7 @@ Le champ `effectifs_mensuels` peut être un décimal (ie: 12,4 ou 100,5).
 Nom       | Présence    | Description
 ---       | --------    | -----------
 token     | obligatoire | Votre jeton d'authentification
-annee     | obligatoire | L'année de l'effectif recherché
-mois      | obligatoire | Mois de l'effectifs recherché
+annee     | obligatoire | L'année de l'effectif recherché (sur 4 caractères)
+mois      | obligatoire | Mois de l'effectifs recherché (sur 2 caractères)
 siret     | obligatoire | Siret de l'établissement
 <%= partial "includes/params_obligatoires" %>
