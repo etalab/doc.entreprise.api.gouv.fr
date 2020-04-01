@@ -1,0 +1,103 @@
+# Effectifs ACOSS
+
+Il y a 3 APIs pour obtenir les effectifs d'une entreprise ou d'un établissements:
+
+- [les effectifs annuels d'une entreprise](#effectifs-annuels-dune-entreprise)
+- [les effectifs mensuels d'une entreprise](#effectifs-mensuels-dune-entreprise)
+- [les effectifs mensuels d'un établissement](#effectifs-mensuels-dun-tablissement)
+
+## Effectifs annuels d'une entreprise
+
+> Format du JSON renvoyé :
+
+```json
+{
+  "siren": "418166096",
+  "effectifs_annuels": 100.5
+}
+```
+
+<aside class="notice">Le service sera disponible le 15 avril 2020.</aside>
+
+### Contenu des champs
+
+L'année de référence est l'année précédente. Le champ `effectifs_annuels`
+peut être un décimal (ie: 12,4 ou 100,5).
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/effectifs_annuels_acoss/:siren`
+
+### Paramètre de requête
+
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+siren     | obligatoire | Siren de l'entreprise
+<%= partial "includes/params_obligatoires" %>
+
+## Effectifs mensuels d'une entreprise
+
+> Format du JSON renvoyé :
+
+```json
+{
+  "siren": "418166096",
+  "effectifs_mensuels": 100.5
+}
+```
+
+<aside class="notice">Le service sera disponible le 15 avril 2020.</aside>
+
+### Contenu des champs
+
+Les effectifs sont mis à jour le 15 de chaque mois, et donc avant cette
+date il n'est possible de demander les effectifs que du mois précédent.
+Le champ `effectifs_mensuels` peut être un décimal (ie: 12,4 ou 100,5).
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/effectifs_mensuels_acoss/:annee/:mois/entreprise/:siren`
+
+### Paramètre de requête
+
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+annee     | obligatoire | L'année de l'effectif recherché
+mois      | obligatoire | Mois de l'effectifs recherché
+siren     | obligatoire | Siren de l'entreprise
+<%= partial "includes/params_obligatoires" %>
+
+## Effectifs mensuels d'un établissement
+
+> Format du JSON renvoyé :
+
+```json
+{
+  "siret": "41816609600026",
+  "effectifs_mensuels": 100.5
+}
+```
+
+<aside class="notice">Le service sera disponible le 15 avril 2020.</aside>
+
+### Contenu des champs
+
+Les effectifs sont mis à jour le 15 de chaque mois, et donc avant cette
+date il n'est possible de demander les effectifs que du mois précédent.
+Le champ `effectifs_mensuels` peut être un décimal (ie: 12,4 ou 100,5).
+
+### Requête HTTP
+
+`GET https://entreprise.api.gouv.fr/v2/effectifs_mensuels_acoss/:annee/:mois/etablissement/:siret`
+
+### Paramètre de requête
+
+Nom       | Présence    | Description
+---       | --------    | -----------
+token     | obligatoire | Votre jeton d'authentification
+annee     | obligatoire | L'année de l'effectif recherché
+mois      | obligatoire | Mois de l'effectifs recherché
+siret     | obligatoire | Siret de l'établissement
+<%= partial "includes/params_obligatoires" %>
