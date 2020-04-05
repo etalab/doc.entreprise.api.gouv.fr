@@ -6,6 +6,11 @@ Il y a 3 APIs pour obtenir les effectifs d'une entreprise ou d'un établissement
 - [les effectifs mensuels d'une entreprise](#effectifs-mensuels-dune-entreprise)
 - [les effectifs mensuels d'un établissement](#effectifs-mensuels-dun-tablissement)
 
+<aside class="warning">
+Ces services sont temporaires dans le cadre du volet 2 de l'aide aux entreprises
+pour faire face au COVID-19
+</aside>
+
 ## Effectifs annuels d'une entreprise
 
 > Format du JSON renvoyé :
@@ -28,7 +33,7 @@ Le champ `effectifs_annuels` peut être un décimal (ie: 12,4 ou 100,5).
 
 ### Requête HTTP
 
-`GET https://entreprise.api.gouv.fr/v2/effectifs_annuels_acoss/:siren`
+`GET https://entreprise.api.gouv.fr/v2/effectifs_annuels_acoss_covid/:siren`
 
 ### Paramètre de requête
 
@@ -64,7 +69,7 @@ Le champ `effectifs_mensuels` peut être un décimal (ie: 12,4 ou 100,5).
 
 ### Requête HTTP
 
-`GET https://entreprise.api.gouv.fr/v2/effectifs_mensuels_acoss/:annee/:mois/entreprise/:siren`
+`GET https://entreprise.api.gouv.fr/v2/effectifs_mensuels_acoss_covid/:annee/:mois/entreprise/:siren`
 
 ### Paramètre de requête
 
@@ -102,7 +107,7 @@ Le champ `effectifs_mensuels` peut être un décimal (ie: 12,4 ou 100,5).
 
 ### Requête HTTP
 
-`GET https://entreprise.api.gouv.fr/v2/effectifs_mensuels_acoss/:annee/:mois/etablissement/:siret`
+`GET https://entreprise.api.gouv.fr/v2/effectifs_mensuels_acoss_covid/:annee/:mois/etablissement/:siret`
 
 ### Paramètre de requête
 
