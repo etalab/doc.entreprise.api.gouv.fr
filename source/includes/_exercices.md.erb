@@ -24,17 +24,20 @@
 }
 ```
 
-**Définition du chiffre d'affaire :**
+### Définition du chiffre d'affaire :
 
-Celui porté sur la liasse fiscale qui correspond au chiffre d'affaire comptable.
+Celui porté sur la liasse fiscale qui correspond au chiffre d'affaire comptable :
 
-<aside class="notice">
+- le montant porté en case FL de l’imprimé 2052 (cas du régime réel normal)
+- la somme des montants indiqués dans les cases 210, 214 et 218 du formulaire 2033B (cas du régime réel simplifié)
+
+### Périmètre de l'API
+
 Cet endpoint ne renvoie les chiffres d'affaire que pour les entreprises qui vérifient les conditions suivantes :
-  <ul>
-    <li>L'entreprise est soumise à l'impôt sur les sociétés.</li>
-    <li>L'entreprise à transmis ses comptes annuels aux greffes.</li>
-  </ul>
-</aside>
+
+- Il existe pour cette entreprise **au moins** 3 exercices
+- L'entreprise est soumise à l'impôt sur les sociétés selon les règles des régimes d'imposition réels normal ou simplifié
+- L'entreprise à transmis ses comptes annuels aux greffes
 
 ### Requête HTTP
 `GET https://entreprise.api.gouv.fr/v2/exercices/:siret`
