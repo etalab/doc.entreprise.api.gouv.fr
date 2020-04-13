@@ -64,6 +64,17 @@
 
 Ce service renvoie les déclarations de liasses fiscales (restreintes aux formulaires disponibles) d'une entreprise pour une année donnée.
 
+### Périmètre de la liasse fiscale
+
+La liasse fiscale est limitée aux entreprises soumises à :
+
+- l'impôt sur les sociétés (IS)*
+- aux bénéfices industriels et commerciaux (BIC)*
+- aux bénéfices non commerciaux (BNC)*
+- aux bénéfices agricoles (BA)*
+
+\* selon les règles des régimes réels normal ou simplifié
+
 ### Requête HTTP
 
 `GET https://entreprise.api.gouv.fr/v2/liasses_fiscales_dgfip/:annee/declarations/:siren`
